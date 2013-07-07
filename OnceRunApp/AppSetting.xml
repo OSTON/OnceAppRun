@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Apps>
+  <Group Id="120" Name="代理">
+    <App Id="22" Name="GoAgent" ExePath="E:\Trainings\DotNet\Windows\OnceRunApp\OnceRunApp\bin\GoAgent.exe"  />
+    <App Id="55" Name="Firefox" ExePath="E:\Trainings\DotNet\Windows\OnceRunApp\OnceRunApp\bin\Firefox.exe" />
+  </Group>
+  <Group Id="232" Name="开发">
+    <App Id="23" Name="GoAgent" ExePath="E:\Trainings\DotNet\Windows\OnceRunApp\OnceRunApp\bin\GoAgent.exe"  />
+    <App Id="52" Name="Firefox" ExePath="E:\Trainings\DotNet\Windows\OnceRunApp\OnceRunApp\bin\Firefox.exe"  />
+  </Group>  
+</Apps>
