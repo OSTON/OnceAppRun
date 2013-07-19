@@ -9,7 +9,9 @@ namespace OnceRunApp.Models
     {
         public AppItem()
         {
-            this.Id = Guid.NewGuid().ToString();
+            this.Id = Guid.NewGuid().ToString().ToUpper();
+            this.Name = string.Empty;
+            this.ExePath = string.Empty;
         }
 
         private string id;
@@ -36,6 +38,15 @@ namespace OnceRunApp.Models
             set { SetField(ref exePath,value,"ExePath"); }
         }
 
-        public AppItemAction Action { get; set; }
+        private AppItemAction action;
+
+        public AppItemAction Action
+        {
+            get { return action; }
+            set { SetField(ref action,value,"Action"); }
+        }
+
+        public AppGroup Group { get; set; }
+        
     }
 }

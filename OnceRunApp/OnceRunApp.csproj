@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -51,11 +52,21 @@
     <Compile Include="Controls\AppControl.Designer.cs">
       <DependentUpon>AppControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\AppGroupTabPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GroupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GroupForm.Designer.cs">
+      <DependentUpon>GroupForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\AppGroup.cs" />
     <Compile Include="Models\AppItem.cs" />
     <Compile Include="Models\AppItemAction.cs" />
     <Compile Include="Models\AppItemChangedEventArgs.cs" />
     <Compile Include="Models\AppItemEventArgs.cs" />
+    <Compile Include="Models\FormAction.cs" />
     <Compile Include="Models\NotificationBase.cs" />
     <Compile Include="RunForm.cs">
       <SubType>Form</SubType>
@@ -66,11 +77,15 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AppService.cs" />
-    <Compile Include="UIHelpers\UICreator.cs" />
-    <Compile Include="Utilities\ComponentService.cs" />
+    <Compile Include="UIHelpers\UiFactory.cs" />
+    <Compile Include="UIHelpers\UiMessager.cs" />
+    <Compile Include="Utilities\KVSettings.cs" />
     <Compile Include="Utilities\XmlUtil.cs" />
     <EmbeddedResource Include="Controls\AppControl.resx">
       <DependentUpon>AppControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GroupForm.resx">
+      <DependentUpon>GroupForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -102,6 +117,15 @@
     <Content Include="AppSetting.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Images\run.png" />
+    <None Include="Images\confirm.png" />
+    <None Include="Images\cancel.png" />
+    <None Include="Images\tab_remove.png" />
+    <None Include="Images\tab_edit.png" />
+    <None Include="Images\tab_add.png" />
+    <None Include="Images\item_remove.png" />
+    <None Include="Images\item_add.png" />
+    <None Include="Images\about.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

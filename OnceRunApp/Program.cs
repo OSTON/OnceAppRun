@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using OnceRunApp.UIHelpers;
+
 namespace OnceRunApp
 {
     static class Program
@@ -16,7 +18,9 @@ namespace OnceRunApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
             Application.Run(new RunForm());
+              
         }
     }
 }

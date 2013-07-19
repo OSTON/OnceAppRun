@@ -42,6 +42,7 @@ namespace OnceRunApp.Controls
 
         //Properties
 
+        public int Index { get; set; }
         public AppItem Item { get; set; }
 
         //Events
@@ -59,10 +60,17 @@ namespace OnceRunApp.Controls
         private void BindDataSource(AppItem item)
         {
             this.Item = item;
+            this.Dock = DockStyle.Fill;
 
+            this.DataBindings.Add(new Binding("Tag", this.Item, "Id"));
             this.txtName.DataBindings.Add(new Binding("Text", this.Item, "Name"));
             this.txtExePath.DataBindings.Add(new Binding("Text", this.Item, "ExePath"));
 
+            this.SetActions(item);
+        }
+
+        private void SetActions(AppItem item)
+        {
             switch (item.Action)
             {
                 case AppItemAction.All:
@@ -85,9 +93,20 @@ namespace OnceRunApp.Controls
             this.Item.PropertyChanged += OnDataPropertyChanged;
         }
 
+        #endregion
+
+        #region Data Event Handlers
+
         private void OnDataPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            //MessageBox.Show(e.PropertyName + " is changed");
+            //Handle self event
+            if (e.PropertyName.Equals("Action"))
+            {
+                SetActions(this.Item);
+                return;
+            }
+
+            //Fire subscribe event listener
             if (OnAppItemChanged != null)
             {
                 OnAppItemChanged(sender, new AppItemChangedEventArgs(this.Item, e.PropertyName));
@@ -95,7 +114,7 @@ namespace OnceRunApp.Controls
         }
         #endregion
 
-        #region Button Operations
+        #region Button Event Handlers
 
         private void BtnChooseExe_Click(object sender, EventArgs e)
         {
@@ -111,7 +130,7 @@ namespace OnceRunApp.Controls
         {
             if (OnAppItemAdded != null)
             {
-                OnAppItemAdded(sender, new AppItemEventArgs(this.Item));
+                OnAppItemAdded(this, new AppItemEventArgs(new AppItem()));
             }
         }
 
@@ -119,7 +138,7 @@ namespace OnceRunApp.Controls
         {
             if (OnAppItemRemoved != null)
             {
-                OnAppItemRemoved(sender, new AppItemEventArgs(this.Item));
+                OnAppItemRemoved(this, new AppItemEventArgs(this.Item));
             }
         }
         

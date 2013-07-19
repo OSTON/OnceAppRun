@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using OnceRunApp.Models;
+using OnceRunApp.Controls;
 using OnceRunApp.Utilities;
 using OnceRunApp.UIHelpers;
 using OnceRunApp.Services;
@@ -18,8 +19,6 @@ using OnceRunApp.Services;
 namespace OnceRunApp
 {
     /// <summary>
-    /// @Author OSTON BETTER
-    /// @Comment
     /// 
     /// </summary>
     public partial class RunForm : Form
@@ -29,30 +28,87 @@ namespace OnceRunApp
             InitializeComponent();
         }
 
+        //Properties
+
+        #region Form Init
+
         private void RunForm_Load(object sender, EventArgs e)
         {
-
-            this.BindAppGroupData();
+            this.BingDataSource();
         }
 
-        private void BindAppGroupData()
+        private void BingDataSource()
         {
             foreach (AppGroup group in AppService.GetAppGroups())
             {
-                group.AppItems.First().Action = AppItemAction.Add;
-                UICreator.CreateTabPage(this.tabAppGroup, group);
+                this.tabAppGroup.Controls.Add(new AppGroupTabPage(group));
+            }
+
+           this.tabAppGroup.ResumeLayout(true);
+        }        
+        #endregion
+
+        #region Button Event Handlers
+
+        private void BtnAddGroup_Click(object sender, EventArgs e)
+        {
+            AddAppGroup();
+        }
+
+        private void AddAppGroup()
+        {
+            GroupForm form = new GroupForm(FormAction.NewItem);
+            if (form.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                AppService.AddAppGroup(form.Group);
+                this.tabAppGroup.Controls.Add(new AppGroupTabPage(form.Group));
+                this.tabAppGroup.ResumeLayout(true);
             }
         }
 
-        private void btnAddAppGroup_Click(object sender, EventArgs e)
+        private void BtnEditGroup_Click(object sender, EventArgs e)
         {
-            this.CreateNewTabPage("Test");
+            EditAppGroup();
         }
 
-        private void CreateNewTabPage(string name)
+        private void EditAppGroup()
         {
-            AppGroup group = new AppGroup(name);
-            UICreator.CreateTabPage(this.tabAppGroup,group);
+            AppGroupTabPage tabPage = this.tabAppGroup.SelectedTab as AppGroupTabPage;
+            if (tabPage != null)
+            {
+                GroupForm form = new GroupForm(FormAction.EditItem);
+                form.Group = tabPage.Group;
+                if (form.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    AppService.UpdateAppGroup(form.Group);
+                    tabPage.Group = form.Group;
+                }
+            }
         }
+
+        private void BtnRemoveGroup_Click(object sender, EventArgs e)
+        {
+            RemoveAppGroup();
+        }
+
+        private void RemoveAppGroup()
+        {
+            AppGroupTabPage tabPage = this.tabAppGroup.SelectedTab as AppGroupTabPage;
+            if (tabPage != null)
+            {
+                if (UiMessager.Confirm("Are you sure to remove current group?") == System.Windows.Forms.DialogResult.Yes)
+                {
+                    AppService.RemoveAppGroup(tabPage.Group);
+                    this.tabAppGroup.Controls.Remove(tabPage);
+                    this.tabAppGroup.ResumeLayout(true);
+                }
+            }
+        }
+
+        #endregion
+
+
+
+
     }
 }

@@ -10,6 +10,9 @@ namespace OnceRunApp.Models
         public AppItemEventArgs(AppItem item)
             : base()
         {
+            this.Item = item;
         }
+
+        public AppItem Item { get; set; }
     }
 }

@@ -9,14 +9,14 @@ namespace OnceRunApp.Models
     {
         public AppGroup()
         {
-            this.Id = Guid.NewGuid().ToString();
+            this.Id = Guid.NewGuid().ToString().ToUpper();
         }
 
         public AppGroup(string name)
-            : base()
         {
+            this.Id = Guid.NewGuid().ToString().ToUpper();
             this.Name = name;
-            this.AppItems = new List<AppItem>(){ new AppItem() };
+            this.AppItems = new List<AppItem>() { new AppItem() };
         }
 
         private string id;
@@ -35,6 +35,6 @@ namespace OnceRunApp.Models
             set { SetField(ref name, value, "Name"); }
         }
     
-        public IEnumerable<AppItem> AppItems { get; set; }
+        public List<AppItem> AppItems { get; set; }
     }
 }
