@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 using OnceRunApp.Models;
 using OnceRunApp.Controls;
-using OnceRunApp.Utilities;
+using OnceRunApp.Configs;
 using OnceRunApp.UIHelpers;
 using OnceRunApp.Services;
 
@@ -29,6 +29,13 @@ namespace OnceRunApp
         }
 
         //Properties
+        public AppGroupTabPage CurrentTab 
+        {
+            get
+            {
+                return this.tabAppGroup.SelectedTab as AppGroupTabPage;
+            }
+        }
 
         #region Form Init
 
@@ -72,16 +79,15 @@ namespace OnceRunApp
         }
 
         private void EditAppGroup()
-        {
-            AppGroupTabPage tabPage = this.tabAppGroup.SelectedTab as AppGroupTabPage;
-            if (tabPage != null)
+        {            
+            if (this.CurrentTab != null)
             {
                 GroupForm form = new GroupForm(FormAction.EditItem);
-                form.Group = tabPage.Group;
+                form.Group = this.CurrentTab.Group;
                 if (form.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     AppService.UpdateAppGroup(form.Group);
-                    tabPage.Group = form.Group;
+                    this.CurrentTab.Group = form.Group;
                 }
             }
         }
@@ -93,21 +99,32 @@ namespace OnceRunApp
 
         private void RemoveAppGroup()
         {
-            AppGroupTabPage tabPage = this.tabAppGroup.SelectedTab as AppGroupTabPage;
-            if (tabPage != null)
+            if (this.CurrentTab != null)
             {
                 if (UiMessager.Confirm("Are you sure to remove current group?") == System.Windows.Forms.DialogResult.Yes)
                 {
-                    AppService.RemoveAppGroup(tabPage.Group);
-                    this.tabAppGroup.Controls.Remove(tabPage);
+                    AppService.RemoveAppGroup(this.CurrentTab.Group);
+                    this.tabAppGroup.Controls.Remove(this.CurrentTab);
                     this.tabAppGroup.ResumeLayout(true);
                 }
             }
         }
 
+        private void BtnShortcut_Click(object sender, EventArgs e)
+        {
+            CreateShortcut();
+        }
+
+        private void CreateShortcut()
+        {
+            if (this.CurrentTab != null)
+            {
+                ShortcutService.CreateShortcut(this.CurrentTab.Group);
+                UiMessager.Info("Group shortcut is created sucessfully!");
+            }
+        }
+
         #endregion
-
-
 
 
     }

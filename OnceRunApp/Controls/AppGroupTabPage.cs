@@ -6,7 +6,7 @@ using System.Text;
 using System.Windows.Forms;
 using OnceRunApp.Models;
 using OnceRunApp.UIHelpers;
-using OnceRunApp.Utilities;
+using OnceRunApp.Configs;
 using OnceRunApp.Services;
 
 namespace OnceRunApp.Controls
@@ -136,6 +136,10 @@ namespace OnceRunApp.Controls
             if (this.AppControls.Remove(control))
             {
                 this.Panel.Controls.Remove(control);
+                if (AppService.ExistsAppItem(control.Item))
+                {
+                    AppService.RemoveAppItem(control.Item);
+                }
                 this.ResetAppControlsLayout();
             }
            

@@ -7,7 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using OnceRunApp.Controls;
 using OnceRunApp.Models;
-using OnceRunApp.Utilities;
+using OnceRunApp.Configs;
 
 /**
  * @AUTHOR: OSTON BETTER     @EMAIL:  OSTONBETTER@GMAIL.COM

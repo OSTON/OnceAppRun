@@ -21,7 +21,10 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.pnlAppTab = new System.Windows.Forms.Panel();
             this.tsOperation = new System.Windows.Forms.ToolStrip();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnRun = new System.Windows.Forms.ToolStripButton();
+            this.btnShortcut = new System.Windows.Forms.ToolStripButton();
             this.btnAddGroup = new System.Windows.Forms.ToolStripButton();
             this.btnEditGroup = new System.Windows.Forms.ToolStripButton();
             this.btnRemoveGroup = new System.Windows.Forms.ToolStripButton();
@@ -67,15 +70,28 @@
             // 
             this.tsOperation.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnRun,
+            this.btnShortcut,
+            this.toolStripSeparator1,
             this.btnAddGroup,
             this.btnEditGroup,
             this.btnRemoveGroup,
+            this.toolStripSeparator2,
             this.btnAbout});
             this.tsOperation.Location = new System.Drawing.Point(0, 0);
             this.tsOperation.Name = "tsOperation";
             this.tsOperation.Size = new System.Drawing.Size(664, 25);
             this.tsOperation.TabIndex = 3;
             this.tsOperation.Text = "toolStrip";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // btnRun
             // 
@@ -84,7 +100,17 @@
             this.btnRun.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnRun.Name = "btnRun";
             this.btnRun.Size = new System.Drawing.Size(23, 22);
-            this.btnRun.Text = "Run Apps";
+            this.btnRun.Text = "Run Group Apps";
+            // 
+            // btnShortcut
+            // 
+            this.btnShortcut.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnShortcut.Image = global::OnceRunApp.Properties.Resources.shortcut;
+            this.btnShortcut.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnShortcut.Name = "btnShortcut";
+            this.btnShortcut.Size = new System.Drawing.Size(23, 22);
+            this.btnShortcut.Text = "Create Group Shortcut";
+            this.btnShortcut.Click += new System.EventHandler(this.BtnShortcut_Click);
             // 
             // btnAddGroup
             // 
@@ -156,6 +182,9 @@
         private System.Windows.Forms.ToolStripButton btnRemoveGroup;
         private System.Windows.Forms.ToolStripButton btnAbout;
         private System.Windows.Forms.ToolStripButton btnRun;
+        private System.Windows.Forms.ToolStripButton btnShortcut;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
 
 
     }

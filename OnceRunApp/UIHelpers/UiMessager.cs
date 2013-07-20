@@ -9,6 +9,11 @@ namespace OnceRunApp.UIHelpers
 {
     public class UiMessager
     {
+        public static void Info(string message)
+        {
+            MessageBox.Show(message, "Infomation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
         public static void Error(string message)
         {
             MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

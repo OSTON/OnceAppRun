@@ -5,7 +5,7 @@ using System.Text;
 
 using System.Xml.Linq;
 using OnceRunApp.Models;
-using OnceRunApp.Utilities;
+using OnceRunApp.Configs;
 
 namespace OnceRunApp.Services
 {
@@ -13,7 +13,7 @@ namespace OnceRunApp.Services
     {
         public static List<AppGroup> GetAppGroups()
         {
-            XDocument xmlSource = XmlUtil.GetAppXmlData();
+            XDocument xmlSource = XmlService.LoadAppData();
             var result = from e in xmlSource.Descendants("Group")
                          select new AppGroup()
                          {
@@ -39,21 +39,21 @@ namespace OnceRunApp.Services
 
         public static bool ExistsAppGroup(AppGroup group)
         {
-            XDocument xmlSource = XmlUtil.GetAppXmlData();
+            XDocument xmlSource = XmlService.LoadAppData();
             var result = xmlSource.Descendants("Group").Where(g => g.Attribute("Id").Value.Equals(group.Id));
             return result != null && result.Count() > 0;
         }
 
         public static bool ExistsAppItem(AppItem item)
         {
-            XDocument xmlSource = XmlUtil.GetAppXmlData();
+            XDocument xmlSource = XmlService.LoadAppData();
             var result = xmlSource.Descendants("App").Where(a => a.Attribute("Id").Value.Equals(item.Id));
             return result != null && result.Count() > 0;
         }
 
         public static void AddAppGroup(AppGroup group)
         {
-            XDocument xmlSource = XmlUtil.GetAppXmlData();
+            XDocument xmlSource = XmlService.LoadAppData();
 
             XElement xGroup = new XElement("Group");
             xGroup.SetAttributeValue("Id", group.Id);
@@ -69,28 +69,28 @@ namespace OnceRunApp.Services
             }
 
             xmlSource.Element("Apps").Add(xGroup);
-            XmlUtil.SaveAppXmlData(xmlSource);
+            XmlService.SaveAppData(xmlSource);
         }
 
         public static void UpdateAppGroup(AppGroup group)
         {
-            XDocument xmlSource = XmlUtil.GetAppXmlData();
+            XDocument xmlSource = XmlService.LoadAppData();
             XElement xGroup = xmlSource.Descendants("Group").FirstOrDefault(g => g.Attribute("Id").Value.Equals(group.Id));
             if (xGroup != null)
             {
                 xGroup.SetAttributeValue("Name", group.Name);
-                XmlUtil.SaveAppXmlData(xmlSource);
+                XmlService.SaveAppData(xmlSource);
             }
         }
 
         public static void RemoveAppGroup(AppGroup group)
         {
-            XDocument xmlSource = XmlUtil.GetAppXmlData();
+            XDocument xmlSource = XmlService.LoadAppData();
             XElement xGroup = xmlSource.Descendants("Group").FirstOrDefault(g => g.Attribute("Id").Value.Equals(group.Id));
             if (xGroup != null)
             {
                 xGroup.Remove();
-                XmlUtil.SaveAppXmlData(xmlSource);
+                XmlService.SaveAppData(xmlSource);
             }           
         }
 
@@ -108,7 +108,7 @@ namespace OnceRunApp.Services
 
         public static void AddAppItem(AppItem item)
         {
-            XDocument xmlSource = XmlUtil.GetAppXmlData();
+            XDocument xmlSource = XmlService.LoadAppData();
             XElement xGroup = xmlSource.Descendants("Group").FirstOrDefault(g => g.Attribute("Id").Value.Equals(item.Group.Id) && g.Attribute("Name").Value.Equals(item.Group.Name));
             
             XElement xApp = new XElement("App");
@@ -117,29 +117,29 @@ namespace OnceRunApp.Services
             xApp.SetAttributeValue("ExePath", item.ExePath);
 
             xGroup.Add(xApp);
-            XmlUtil.SaveAppXmlData(xmlSource);
+            XmlService.SaveAppData(xmlSource);
         }
 
         public static void UpdateAppItem(AppItem item)
         {
-            XDocument xmlSource = XmlUtil.GetAppXmlData();
+            XDocument xmlSource = XmlService.LoadAppData();
             XElement xApp = xmlSource.Descendants("App").FirstOrDefault(a => a.Attribute("Id").Value.Equals(item.Id));
             if (xApp != null)
             {
                 xApp.SetAttributeValue("Name", item.Name);
                 xApp.SetAttributeValue("ExePath", item.ExePath);
-                XmlUtil.SaveAppXmlData(xmlSource);
+                XmlService.SaveAppData(xmlSource);
             }
         }
 
         public static void RemoveAppItem(AppItem item)
         {
-            XDocument xmlSource = XmlUtil.GetAppXmlData();
+            XDocument xmlSource = XmlService.LoadAppData();
             XElement xApp = xmlSource.Descendants("App").FirstOrDefault(a => a.Attribute("Id").Value.Equals(item.Id));
             if (xApp != null)
             {
                 xApp.Remove();
-                XmlUtil.SaveAppXmlData(xmlSource);
+                XmlService.SaveAppData(xmlSource);
             }
         }
 
