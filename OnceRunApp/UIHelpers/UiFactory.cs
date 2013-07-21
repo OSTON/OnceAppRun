@@ -22,7 +22,7 @@ namespace OnceRunApp.UIHelpers
         public static TableLayoutPanel CreateTableLayoutPanel()
         {
             TableLayoutPanel panel = new TableLayoutPanel();
-            panel.RowCount = KVSettings.MaxAppCount;
+            panel.RowCount = KVSettings.MaxAppCountInGroup;
             panel.ColumnCount = 1;
             panel.Dock = DockStyle.Fill;
             panel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));

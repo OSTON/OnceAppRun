@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using OnceRunApp.Models;
+using OnceRunApp.Services;
 using OnceRunApp.UIHelpers;
 
 namespace OnceRunApp
@@ -24,9 +26,16 @@ namespace OnceRunApp
             }
             else
             {
-                UiMessager.Info(args[0]);
+                string executeGroupId = args[0];
+                AppService.OnAppRunError += AppService_OnAppRunError;
+                AppService.RunApps(executeGroupId);
             }
 
+        }
+
+        static void AppService_OnAppRunError(AppItemEventArgs e)
+        {
+            UiMessager.Error(string.Format("App [{0}] is run error,{1}", e.Item.Name, e.Error.Message));
         }
     }
 }

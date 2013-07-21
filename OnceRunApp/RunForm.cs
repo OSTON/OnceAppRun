@@ -41,10 +41,11 @@ namespace OnceRunApp
 
         private void RunForm_Load(object sender, EventArgs e)
         {
-            this.BingDataSource();
+            this.BindDataSource();
+            this.BindAppRunEvents();
         }
 
-        private void BingDataSource()
+        private void BindDataSource()
         {
             foreach (AppGroup group in AppService.GetAppGroups())
             {
@@ -52,7 +53,17 @@ namespace OnceRunApp
             }
 
            this.tabAppGroup.ResumeLayout(true);
-        }        
+        }
+
+        private void BindAppRunEvents()
+        {
+            AppService.OnAppRunError += AppService_OnAppRunError;
+        }
+
+        private void AppService_OnAppRunError(AppItemEventArgs e)
+        {
+            UiMessager.Error(string.Format("App [{0}] is run error,{1}!",e.Item.Name,e.Error.Message));
+        }
         #endregion
 
         #region Button Event Handlers
@@ -124,7 +135,22 @@ namespace OnceRunApp
             }
         }
 
+        private void BtnRunApps_Click(object sender, EventArgs e)
+        {
+            RunSelectedApps();
+        }
+
+        private void RunSelectedApps()
+        {
+            if (this.CurrentTab != null)
+            {
+                AppService.RunApps(this.CurrentTab.Group);
+            }
+        }
+
         #endregion
+
+
 
 
     }

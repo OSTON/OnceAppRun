@@ -6,11 +6,20 @@ using System.Text;
 using System.Xml.Linq;
 using OnceRunApp.Models;
 using OnceRunApp.Configs;
+using System.Diagnostics;
+using System.Threading;
 
 namespace OnceRunApp.Services
 {
     public class AppService
     {
+        //Events
+
+        public delegate void OnAppRunErrorHandler(AppItemEventArgs e);
+        public static event OnAppRunErrorHandler OnAppRunError;
+
+        #region Base functions
+       
         public static List<AppGroup> GetAppGroups()
         {
             XDocument xmlSource = XmlService.LoadAppData();
@@ -23,6 +32,21 @@ namespace OnceRunApp.Services
                          };
 
             return result != null ? result.ToList<AppGroup>() : new List<AppGroup>();
+        }
+
+        public static AppGroup GetAppGroup(string id)
+        {
+            AppGroup group = new AppGroup();
+            XDocument xmlSource = XmlService.LoadAppData();
+            XElement xGroup = xmlSource.Descendants("Group").FirstOrDefault(g => g.Attribute("Id").Value.Equals(id));
+            if (xGroup != null)
+            {
+                group.Id = xGroup.Attribute("Id").Value;
+                group.Name = xGroup.Attribute("Name").Value;
+                group.AppItems = GetAppItems(xGroup);
+            }
+
+            return group;
         }
 
         public static List<AppItem> GetAppItems(XElement xGroup)
@@ -142,6 +166,48 @@ namespace OnceRunApp.Services
                 XmlService.SaveAppData(xmlSource);
             }
         }
+
+        #endregion
+
+        #region Run Service functions
+
+        public static void RunApps(string gId)
+        {
+            RunApps(GetAppGroup(gId));
+        }
+        
+        public static void RunApps(AppGroup group)
+        {
+            new Thread(new ThreadStart(() =>
+            {
+                if (group != null && group.AppItems.Count > 0)
+                {
+                    foreach (AppItem item in group.AppItems)
+                    {
+                        try
+                        {
+                            if (KVSettings.AppRunIntervalTime > 0)
+                            {
+                                Thread.Sleep(KVSettings.AppRunIntervalTime);
+                            }
+
+                            //Run app by .NET API
+                            Process.Start(item.ExePath);
+                        }
+                        catch (Exception ex)
+                        {
+                            if (OnAppRunError != null)
+                            {
+                                OnAppRunError(new AppItemEventArgs(item, ex));
+                            }
+                            continue;
+                        }
+                    }
+                }
+            })).Start();
+        }
+
+        #endregion
 
     }
 }

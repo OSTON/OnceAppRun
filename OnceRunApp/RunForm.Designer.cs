@@ -21,13 +21,13 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.pnlAppTab = new System.Windows.Forms.Panel();
             this.tsOperation = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnRun = new System.Windows.Forms.ToolStripButton();
+            this.btnRunApps = new System.Windows.Forms.ToolStripButton();
             this.btnShortcut = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnAddGroup = new System.Windows.Forms.ToolStripButton();
             this.btnEditGroup = new System.Windows.Forms.ToolStripButton();
             this.btnRemoveGroup = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnAbout = new System.Windows.Forms.ToolStripButton();
             this.tabAppGroup.SuspendLayout();
             this.pnlAppTab.SuspendLayout();
@@ -69,7 +69,7 @@
             // tsOperation
             // 
             this.tsOperation.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnRun,
+            this.btnRunApps,
             this.btnShortcut,
             this.toolStripSeparator1,
             this.btnAddGroup,
@@ -83,24 +83,15 @@
             this.tsOperation.TabIndex = 3;
             this.tsOperation.Text = "toolStrip";
             // 
-            // toolStripSeparator1
+            // btnRunApps
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
-            // btnRun
-            // 
-            this.btnRun.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnRun.Image = global::OnceRunApp.Properties.Resources.run;
-            this.btnRun.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnRun.Name = "btnRun";
-            this.btnRun.Size = new System.Drawing.Size(23, 22);
-            this.btnRun.Text = "Run Group Apps";
+            this.btnRunApps.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnRunApps.Image = global::OnceRunApp.Properties.Resources.run;
+            this.btnRunApps.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnRunApps.Name = "btnRunApps";
+            this.btnRunApps.Size = new System.Drawing.Size(23, 22);
+            this.btnRunApps.Text = "Run Group Apps";
+            this.btnRunApps.Click += new System.EventHandler(this.BtnRunApps_Click);
             // 
             // btnShortcut
             // 
@@ -111,6 +102,11 @@
             this.btnShortcut.Size = new System.Drawing.Size(23, 22);
             this.btnShortcut.Text = "Create Group Shortcut";
             this.btnShortcut.Click += new System.EventHandler(this.BtnShortcut_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // btnAddGroup
             // 
@@ -141,6 +137,11 @@
             this.btnRemoveGroup.Size = new System.Drawing.Size(23, 22);
             this.btnRemoveGroup.Text = "Remove Group";
             this.btnRemoveGroup.Click += new System.EventHandler(this.BtnRemoveGroup_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // btnAbout
             // 
@@ -181,7 +182,7 @@
         private System.Windows.Forms.ToolStripButton btnEditGroup;
         private System.Windows.Forms.ToolStripButton btnRemoveGroup;
         private System.Windows.Forms.ToolStripButton btnAbout;
-        private System.Windows.Forms.ToolStripButton btnRun;
+        private System.Windows.Forms.ToolStripButton btnRunApps;
         private System.Windows.Forms.ToolStripButton btnShortcut;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;

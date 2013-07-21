@@ -59,12 +59,12 @@ namespace OnceRunApp.Controls
         private int SetNextAppIndex()
         {
             int index = this.AppIndex + 1;
-            return index >= KVSettings.MaxAppCount -1 ? KVSettings.MaxAppCount -1 : index;
+            return index >= KVSettings.MaxAppCountInGroup -1 ? KVSettings.MaxAppCountInGroup -1 : index;
         }
 
         private AppItemAction SetNextItemAction(int controlCount)
         { 
-            if (controlCount == KVSettings.MaxAppCount)
+            if (controlCount == KVSettings.MaxAppCountInGroup)
             {
                 return AppItemAction.Delete;
             }
@@ -98,7 +98,7 @@ namespace OnceRunApp.Controls
         private void AddAppControlItem(AppControl source,AppItemEventArgs e)
         {          
             this.AppIndex = SetNextAppIndex();
-            e.Item.Action = (this.AppControls.Count >= KVSettings.MaxAppCount - 1) ? AppItemAction.Delete : AppItemAction.All;
+            e.Item.Action = (this.AppControls.Count >= KVSettings.MaxAppCountInGroup - 1) ? AppItemAction.Delete : AppItemAction.All;
             source.Item.Action = AppItemAction.Delete;
             AppControl control = NewAppControl(e.Item, this.AppIndex);
 
