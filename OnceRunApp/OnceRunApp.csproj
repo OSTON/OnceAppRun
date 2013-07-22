@@ -32,7 +32,14 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>App.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NLog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\NLog\.NET Framework 4.0\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -55,10 +62,10 @@
     <Compile Include="Controls\AppGroupTabPage.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="GroupForm.cs">
+    <Compile Include="Forms\GroupForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GroupForm.Designer.cs">
+    <Compile Include="Forms\GroupForm.Designer.cs">
       <DependentUpon>GroupForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\AppGroup.cs" />
@@ -68,10 +75,10 @@
     <Compile Include="Models\AppItemEventArgs.cs" />
     <Compile Include="Models\FormAction.cs" />
     <Compile Include="Models\NotificationBase.cs" />
-    <Compile Include="RunForm.cs">
+    <Compile Include="Forms\RunForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RunForm.Designer.cs">
+    <Compile Include="Forms\RunForm.Designer.cs">
       <DependentUpon>RunForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -79,13 +86,14 @@
     <Compile Include="Services\AppService.cs" />
     <Compile Include="Services\ShortcutService.cs" />
     <Compile Include="UIHelpers\UiFactory.cs" />
-    <Compile Include="UIHelpers\UiMessager.cs" />
+    <Compile Include="Utilities\AppLogger.cs" />
+    <Compile Include="Utilities\UiMessager.cs" />
     <Compile Include="Configs\KVSettings.cs" />
     <Compile Include="Services\XmlService.cs" />
     <EmbeddedResource Include="Controls\AppControl.resx">
       <DependentUpon>AppControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GroupForm.resx">
+    <EmbeddedResource Include="Forms\GroupForm.resx">
       <DependentUpon>GroupForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -98,7 +106,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="RunForm.resx">
+    <EmbeddedResource Include="Forms\RunForm.resx">
       <DependentUpon>RunForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
@@ -115,6 +123,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App.ico" />
     <Content Include="AppSetting.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
