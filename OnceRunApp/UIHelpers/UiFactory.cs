@@ -26,7 +26,7 @@ namespace OnceRunApp.UIHelpers
             panel.ColumnCount = 1;
             panel.Dock = DockStyle.Fill;
             panel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            panel.BackColor = System.Drawing.SystemColors.ControlLightLight ;
+            //panel.BackColor = System.Drawing.SystemColors.ControlLight ;
 
             return panel;
         }

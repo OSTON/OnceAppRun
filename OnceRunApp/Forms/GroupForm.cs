@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 
 using OnceRunApp.Models;
+using OnceRunApp.UIHelpers;
 
 namespace OnceRunApp
 {
@@ -50,11 +51,13 @@ namespace OnceRunApp
         {
             if (this.Action == FormAction.NewItem)
             {
+                this.pbTitle.Image = OnceRunApp.Properties.Resources.tab_add;
                 this.ActiveControl = this.txtGroupName;
                 this.txtGroupName.Focus();
             }
             if (this.Action == FormAction.EditItem)
             {
+                this.pbTitle.Image = OnceRunApp.Properties.Resources.tab_edit;
                 this.txtGroupName.SelectionStart = 0;
                 this.txtGroupName.SelectionLength = this.Name.Length;
                 this.txtGroupName.Select();
@@ -68,6 +71,19 @@ namespace OnceRunApp
         private void BtnOK_Click(object sender, EventArgs e)
         {
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
+        }
+
+        #endregion
+
+        #region Override Methods
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+
+            System.IntPtr ptr = RoundRectangle.CreateRoundRectRegion(0, 0, this.Width, this.Height, 20, 20); // _BoarderRaduis can be adjusted to your needs, try 15 to start.
+            this.Region = System.Drawing.Region.FromHrgn(ptr);
+            RoundRectangle.DeleteObject(ptr);
         }
 
         #endregion

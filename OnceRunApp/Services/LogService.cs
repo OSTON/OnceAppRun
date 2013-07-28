@@ -5,11 +5,11 @@ using System.Text;
 
 using NLog;
 
-namespace OnceRunApp.Utilities
+namespace OnceRunApp.Services
 {
-    public class AppLogger
+    public class LogService
     {
-        private AppLogger() { }
+        private LogService() { }
 
         private static Logger logger;
 

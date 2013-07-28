@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace OnceRunApp.Models
+namespace OnceRunApp.Base
 {
-    public enum AppItemAction
+    public enum AlertType
     {
-        All,
-        Add,
-        Delete
+        Error,
+        Warning
     }
 }

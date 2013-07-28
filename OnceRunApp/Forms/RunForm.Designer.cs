@@ -18,43 +18,20 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RunForm));
-            this.tabAppGroup = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.pnlAppTab = new System.Windows.Forms.Panel();
             this.tsOperation = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnRunApps = new System.Windows.Forms.ToolStripButton();
             this.btnShortcut = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnAddGroup = new System.Windows.Forms.ToolStripButton();
             this.btnEditGroup = new System.Windows.Forms.ToolStripButton();
             this.btnRemoveGroup = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnAbout = new System.Windows.Forms.ToolStripButton();
-            this.tabAppGroup.SuspendLayout();
+            this.tabAppGroup = new System.Windows.Forms.TabControl();
             this.pnlAppTab.SuspendLayout();
             this.tsOperation.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // tabAppGroup
-            // 
-            this.tabAppGroup.Controls.Add(this.tabPage1);
-            this.tabAppGroup.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabAppGroup.Location = new System.Drawing.Point(0, 0);
-            this.tabAppGroup.Name = "tabAppGroup";
-            this.tabAppGroup.SelectedIndex = 0;
-            this.tabAppGroup.Size = new System.Drawing.Size(664, 333);
-            this.tabAppGroup.TabIndex = 0;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.ImageIndex = 0;
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(656, 307);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "OnceRunApp";
-            this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // pnlAppTab
             // 
@@ -64,7 +41,7 @@
             this.pnlAppTab.Controls.Add(this.tabAppGroup);
             this.pnlAppTab.Location = new System.Drawing.Point(0, 28);
             this.pnlAppTab.Name = "pnlAppTab";
-            this.pnlAppTab.Size = new System.Drawing.Size(664, 333);
+            this.pnlAppTab.Size = new System.Drawing.Size(664, 383);
             this.pnlAppTab.TabIndex = 2;
             // 
             // tsOperation
@@ -83,16 +60,6 @@
             this.tsOperation.Size = new System.Drawing.Size(664, 25);
             this.tsOperation.TabIndex = 3;
             this.tsOperation.Text = "toolStrip";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // btnRunApps
             // 
@@ -113,6 +80,11 @@
             this.btnShortcut.Size = new System.Drawing.Size(23, 22);
             this.btnShortcut.Text = "Create Group Shortcut";
             this.btnShortcut.Click += new System.EventHandler(this.BtnShortcut_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // btnAddGroup
             // 
@@ -144,6 +116,11 @@
             this.btnRemoveGroup.Text = "Remove Group";
             this.btnRemoveGroup.Click += new System.EventHandler(this.BtnRemoveGroup_Click);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
             // btnAbout
             // 
             this.btnAbout.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -152,12 +129,22 @@
             this.btnAbout.Name = "btnAbout";
             this.btnAbout.Size = new System.Drawing.Size(23, 22);
             this.btnAbout.Text = "About";
+            this.btnAbout.Click += new System.EventHandler(this.BtnAbout_Click);
+            // 
+            // tabAppGroup
+            // 
+            this.tabAppGroup.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabAppGroup.Location = new System.Drawing.Point(0, 0);
+            this.tabAppGroup.Name = "tabAppGroup";
+            this.tabAppGroup.SelectedIndex = 0;
+            this.tabAppGroup.Size = new System.Drawing.Size(664, 383);
+            this.tabAppGroup.TabIndex = 0;
             // 
             // RunForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(664, 361);
+            this.ClientSize = new System.Drawing.Size(664, 411);
             this.Controls.Add(this.tsOperation);
             this.Controls.Add(this.pnlAppTab);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -165,7 +152,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "OnceRunApp Settings";
             this.Load += new System.EventHandler(this.RunForm_Load);
-            this.tabAppGroup.ResumeLayout(false);
             this.pnlAppTab.ResumeLayout(false);
             this.tsOperation.ResumeLayout(false);
             this.tsOperation.PerformLayout();
@@ -176,8 +162,6 @@
 
         #endregion
 
-        private System.Windows.Forms.TabControl tabAppGroup;
-        private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Panel pnlAppTab;
         private System.Windows.Forms.ToolStrip tsOperation;
         private System.Windows.Forms.ToolStripButton btnAddGroup;
@@ -188,6 +172,7 @@
         private System.Windows.Forms.ToolStripButton btnShortcut;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.TabControl tabAppGroup;
 
 
     }

@@ -30,7 +30,7 @@ namespace OnceRunApp
         }
 
         //Properties
-        public AppGroupTabPage CurrentTab 
+        public AppGroupTabPage CurrentTab
         {
             get
             {
@@ -63,7 +63,7 @@ namespace OnceRunApp
 
         private void AppService_OnAppRunError(AppItemEventArgs e)
         {
-            UiMessager.Error(string.Format("App [{0}] is run error,{1}!",e.Item.Name,e.Error.Message));
+            UiMessager.ShowError(string.Format("App [{0}] is run error,{1}!",e.Item.Name,e.Error.Message));
         }
         #endregion
 
@@ -77,7 +77,7 @@ namespace OnceRunApp
         private void AddAppGroup()
         {
             GroupForm form = new GroupForm(FormAction.NewItem);
-            if (form.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (form.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
             {
                 AppService.AddAppGroup(form.Group);
                 this.tabAppGroup.Controls.Add(new AppGroupTabPage(form.Group));
@@ -96,7 +96,7 @@ namespace OnceRunApp
             {
                 GroupForm form = new GroupForm(FormAction.EditItem);
                 form.Group = this.CurrentTab.Group;
-                if (form.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                if (form.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
                 {
                     AppService.UpdateAppGroup(form.Group);
                     this.CurrentTab.Group = form.Group;
@@ -113,7 +113,7 @@ namespace OnceRunApp
         {
             if (this.CurrentTab != null)
             {
-                if (UiMessager.Confirm("Are you sure to remove current group?") == System.Windows.Forms.DialogResult.Yes)
+                if (UiMessager.ShowConfirm("Are you sure to remove current group?") == System.Windows.Forms.DialogResult.Yes)
                 {
                     AppService.RemoveAppGroup(this.CurrentTab.Group);
                     this.tabAppGroup.Controls.Remove(this.CurrentTab);
@@ -132,7 +132,7 @@ namespace OnceRunApp
             if (this.CurrentTab != null)
             {
                 ShortcutService.CreateShortcut(this.CurrentTab.Group);
-                UiMessager.Info("Group shortcut is created sucessfully!");
+                UiMessager.ShowInfo("Group shortcut is created sucessfully!");
             }
         }
 
@@ -149,10 +149,13 @@ namespace OnceRunApp
             }
         }
 
+        private void BtnAbout_Click(object sender, EventArgs e)
+        {
+            AboutBox box = new AboutBox();
+            box.ShowDialog(this);
+        }
+
         #endregion
-
-
-
 
     }
 }

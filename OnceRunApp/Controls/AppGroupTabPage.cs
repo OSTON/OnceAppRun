@@ -33,10 +33,11 @@ namespace OnceRunApp.Controls
             this.Group = group;
             this.Panel = UiFactory.CreateTableLayoutPanel();
             this.AppControls = new List<AppControl>();
-            this.AutoScroll = true;
-
+       
+            //this.AutoScroll = true;
             this.DataBindings.Add(new Binding("Tag", this.Group, "Id"));
             this.DataBindings.Add(new Binding("Text", this.Group, "Name"));
+            this.DataBindings.Add(new Binding("ToolTipText",this.Group,"Name"));
          
             this.BindAppControls(group);
         }

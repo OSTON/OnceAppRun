@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("OnceRunApp")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("A tools use to run apps at once time.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("OnceRunApp")]
-[assembly: AssemblyCopyright("Copyright ©  2013")]
+[assembly: AssemblyCopyright("Copyright © 2013 OSTON PROJECT")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

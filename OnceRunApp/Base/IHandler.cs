@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace OnceRunApp.Models
+namespace OnceRunApp.Base
 {
-    public enum AppItemAction
+    public interface IHandler
     {
-        All,
-        Add,
-        Delete
+        void Execute();
     }
 }
