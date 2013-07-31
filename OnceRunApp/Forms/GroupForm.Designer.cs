@@ -108,7 +108,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(408, 202);
             this.Controls.Add(this.pbTitle);
@@ -118,6 +118,7 @@
             this.Controls.Add(this.txtGroupName);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "GroupForm";
             this.ShowInTaskbar = false;

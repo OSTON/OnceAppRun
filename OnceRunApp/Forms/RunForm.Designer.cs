@@ -19,6 +19,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RunForm));
             this.pnlAppTab = new System.Windows.Forms.Panel();
+            this.tabAppGroup = new System.Windows.Forms.TabControl();
             this.tsOperation = new System.Windows.Forms.ToolStrip();
             this.btnRunApps = new System.Windows.Forms.ToolStripButton();
             this.btnShortcut = new System.Windows.Forms.ToolStripButton();
@@ -28,7 +29,6 @@
             this.btnRemoveGroup = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnAbout = new System.Windows.Forms.ToolStripButton();
-            this.tabAppGroup = new System.Windows.Forms.TabControl();
             this.pnlAppTab.SuspendLayout();
             this.tsOperation.SuspendLayout();
             this.SuspendLayout();
@@ -43,6 +43,15 @@
             this.pnlAppTab.Name = "pnlAppTab";
             this.pnlAppTab.Size = new System.Drawing.Size(664, 383);
             this.pnlAppTab.TabIndex = 2;
+            // 
+            // tabAppGroup
+            // 
+            this.tabAppGroup.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabAppGroup.Location = new System.Drawing.Point(0, 0);
+            this.tabAppGroup.Name = "tabAppGroup";
+            this.tabAppGroup.SelectedIndex = 0;
+            this.tabAppGroup.Size = new System.Drawing.Size(664, 383);
+            this.tabAppGroup.TabIndex = 0;
             // 
             // tsOperation
             // 
@@ -69,7 +78,6 @@
             this.btnRunApps.Name = "btnRunApps";
             this.btnRunApps.Size = new System.Drawing.Size(23, 22);
             this.btnRunApps.Text = "Run Group Apps";
-            this.btnRunApps.Click += new System.EventHandler(this.BtnRunApps_Click);
             // 
             // btnShortcut
             // 
@@ -79,7 +87,6 @@
             this.btnShortcut.Name = "btnShortcut";
             this.btnShortcut.Size = new System.Drawing.Size(23, 22);
             this.btnShortcut.Text = "Create Group Shortcut";
-            this.btnShortcut.Click += new System.EventHandler(this.BtnShortcut_Click);
             // 
             // toolStripSeparator1
             // 
@@ -94,7 +101,6 @@
             this.btnAddGroup.Name = "btnAddGroup";
             this.btnAddGroup.Size = new System.Drawing.Size(23, 22);
             this.btnAddGroup.Text = "Add Group";
-            this.btnAddGroup.Click += new System.EventHandler(this.BtnAddGroup_Click);
             // 
             // btnEditGroup
             // 
@@ -104,7 +110,6 @@
             this.btnEditGroup.Name = "btnEditGroup";
             this.btnEditGroup.Size = new System.Drawing.Size(23, 22);
             this.btnEditGroup.Text = "Edit Group";
-            this.btnEditGroup.Click += new System.EventHandler(this.BtnEditGroup_Click);
             // 
             // btnRemoveGroup
             // 
@@ -114,7 +119,6 @@
             this.btnRemoveGroup.Name = "btnRemoveGroup";
             this.btnRemoveGroup.Size = new System.Drawing.Size(23, 22);
             this.btnRemoveGroup.Text = "Remove Group";
-            this.btnRemoveGroup.Click += new System.EventHandler(this.BtnRemoveGroup_Click);
             // 
             // toolStripSeparator2
             // 
@@ -129,16 +133,6 @@
             this.btnAbout.Name = "btnAbout";
             this.btnAbout.Size = new System.Drawing.Size(23, 22);
             this.btnAbout.Text = "About";
-            this.btnAbout.Click += new System.EventHandler(this.BtnAbout_Click);
-            // 
-            // tabAppGroup
-            // 
-            this.tabAppGroup.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabAppGroup.Location = new System.Drawing.Point(0, 0);
-            this.tabAppGroup.Name = "tabAppGroup";
-            this.tabAppGroup.SelectedIndex = 0;
-            this.tabAppGroup.Size = new System.Drawing.Size(664, 383);
-            this.tabAppGroup.TabIndex = 0;
             // 
             // RunForm
             // 
@@ -147,11 +141,11 @@
             this.ClientSize = new System.Drawing.Size(664, 411);
             this.Controls.Add(this.tsOperation);
             this.Controls.Add(this.pnlAppTab);
+            this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "RunForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "OnceRunApp Settings";
-            this.Load += new System.EventHandler(this.RunForm_Load);
             this.pnlAppTab.ResumeLayout(false);
             this.tsOperation.ResumeLayout(false);
             this.tsOperation.PerformLayout();

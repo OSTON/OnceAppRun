@@ -5,7 +5,7 @@ using System.Text;
 
 using System.Windows.Forms;
 
-namespace OnceRunApp.Utilities
+namespace OnceRunApp.UIHelpers
 {
     public class UiMessager
     {
@@ -29,12 +29,5 @@ namespace OnceRunApp.Utilities
             return MessageBox.Show(message, "OnceRunApp Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
         }
 
-        public static void ShowAbout()
-        {
-            MessageBox.Show(@"Thank you for your support!This tool is free to use and open source.Please kindly let me know if you have problem with the tool.NAME:OSTON BETTER EMAIL:OSTONBETTER@GMAIL.COM", 
-                            "About OnceRunApp", 
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Information);
-        }
     }
 }

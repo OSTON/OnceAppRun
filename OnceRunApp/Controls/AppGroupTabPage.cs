@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using System.Windows.Forms;
+
+using OnceRunApp.Base;
 using OnceRunApp.Models;
 using OnceRunApp.UIHelpers;
-using OnceRunApp.Configs;
 using OnceRunApp.Services;
 
 namespace OnceRunApp.Controls
@@ -60,12 +60,12 @@ namespace OnceRunApp.Controls
         private int SetNextAppIndex()
         {
             int index = this.AppIndex + 1;
-            return index >= KVSettings.MaxAppCountInGroup -1 ? KVSettings.MaxAppCountInGroup -1 : index;
+            return index >= GlobalVars.MaxAppCountInGroup - 1 ? GlobalVars.MaxAppCountInGroup - 1 : index;
         }
 
         private AppItemAction SetNextItemAction(int controlCount)
-        { 
-            if (controlCount == KVSettings.MaxAppCountInGroup)
+        {
+            if (controlCount == GlobalVars.MaxAppCountInGroup)
             {
                 return AppItemAction.Delete;
             }
@@ -99,7 +99,7 @@ namespace OnceRunApp.Controls
         private void AddAppControlItem(AppControl source,AppItemEventArgs e)
         {          
             this.AppIndex = SetNextAppIndex();
-            e.Item.Action = (this.AppControls.Count >= KVSettings.MaxAppCountInGroup - 1) ? AppItemAction.Delete : AppItemAction.All;
+            e.Item.Action = (this.AppControls.Count >= GlobalVars.MaxAppCountInGroup - 1) ? AppItemAction.Delete : AppItemAction.All;
             source.Item.Action = AppItemAction.Delete;
             AppControl control = NewAppControl(e.Item, this.AppIndex);
 

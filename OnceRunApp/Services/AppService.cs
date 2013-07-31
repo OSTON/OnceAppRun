@@ -2,12 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using System.IO;
 using System.Xml.Linq;
+using OnceRunApp.Base;
 using OnceRunApp.Models;
-using OnceRunApp.Configs;
 using System.Diagnostics;
 using System.Threading;
+using Shell32;
+using IWshRuntimeLibrary;
+using System.Windows.Forms;
+
+
 
 namespace OnceRunApp.Services
 {
@@ -22,8 +27,8 @@ namespace OnceRunApp.Services
        
         public static List<AppGroup> GetAppGroups()
         {
-            XDocument xmlSource = XmlService.LoadAppData();
-            var result = from e in xmlSource.Descendants("Group")
+            XDocument data = GlobalVars.SourceData;
+            var result = from e in data.Descendants("Group")
                          select new AppGroup()
                          {
                              Id = e.Attribute("Id").Value,
@@ -36,9 +41,9 @@ namespace OnceRunApp.Services
 
         public static AppGroup GetAppGroup(string id)
         {
-            AppGroup group = new AppGroup();
-            XDocument xmlSource = XmlService.LoadAppData();
-            XElement xGroup = xmlSource.Descendants("Group").FirstOrDefault(g => g.Attribute("Id").Value.Equals(id));
+            AppGroup group = new AppGroup(); 
+            XDocument data = GlobalVars.SourceData;
+            XElement xGroup = data.Descendants("Group").FirstOrDefault(g => g.Attribute("Id").Value.Equals(id));
             if (xGroup != null)
             {
                 group.Id = xGroup.Attribute("Id").Value;
@@ -63,21 +68,21 @@ namespace OnceRunApp.Services
 
         public static bool ExistsAppGroup(AppGroup group)
         {
-            XDocument xmlSource = XmlService.LoadAppData();
-            var result = xmlSource.Descendants("Group").Where(g => g.Attribute("Id").Value.Equals(group.Id));
+            XDocument data = GlobalVars.SourceData;
+            var result = data.Descendants("Group").Where(g => g.Attribute("Id").Value.Equals(group.Id));
             return result != null && result.Count() > 0;
         }
 
         public static bool ExistsAppItem(AppItem item)
         {
-            XDocument xmlSource = XmlService.LoadAppData();
-            var result = xmlSource.Descendants("App").Where(a => a.Attribute("Id").Value.Equals(item.Id));
+            XDocument source = GlobalVars.SourceData;
+            var result = source.Descendants("App").Where(a => a.Attribute("Id").Value.Equals(item.Id));
             return result != null && result.Count() > 0;
         }
 
         public static void AddAppGroup(AppGroup group)
         {
-            XDocument xmlSource = XmlService.LoadAppData();
+            XDocument data = GlobalVars.SourceData;
 
             XElement xGroup = new XElement("Group");
             xGroup.SetAttributeValue("Id", group.Id);
@@ -92,29 +97,29 @@ namespace OnceRunApp.Services
                 xGroup.Add(xApp);
             }
 
-            xmlSource.Element("Apps").Add(xGroup);
-            XmlService.SaveAppData(xmlSource);
+            data.Element("Apps").Add(xGroup);
+            data.SavaAsSource();
         }
 
         public static void UpdateAppGroup(AppGroup group)
         {
-            XDocument xmlSource = XmlService.LoadAppData();
-            XElement xGroup = xmlSource.Descendants("Group").FirstOrDefault(g => g.Attribute("Id").Value.Equals(group.Id));
+            XDocument data =GlobalVars.SourceData;
+            XElement xGroup = data.Descendants("Group").FirstOrDefault(g => g.Attribute("Id").Value.Equals(group.Id));
             if (xGroup != null)
             {
                 xGroup.SetAttributeValue("Name", group.Name);
-                XmlService.SaveAppData(xmlSource);
+                data.SavaAsSource();
             }
         }
 
         public static void RemoveAppGroup(AppGroup group)
         {
-            XDocument xmlSource = XmlService.LoadAppData();
-            XElement xGroup = xmlSource.Descendants("Group").FirstOrDefault(g => g.Attribute("Id").Value.Equals(group.Id));
+            XDocument data = GlobalVars.SourceData;
+            XElement xGroup = data.Descendants("Group").FirstOrDefault(g => g.Attribute("Id").Value.Equals(group.Id));
             if (xGroup != null)
             {
                 xGroup.Remove();
-                XmlService.SaveAppData(xmlSource);
+                data.SavaAsSource();
             }           
         }
 
@@ -132,8 +137,8 @@ namespace OnceRunApp.Services
 
         public static void AddAppItem(AppItem item)
         {
-            XDocument xmlSource = XmlService.LoadAppData();
-            XElement xGroup = xmlSource.Descendants("Group").FirstOrDefault(g => g.Attribute("Id").Value.Equals(item.Group.Id) && g.Attribute("Name").Value.Equals(item.Group.Name));
+            XDocument data = GlobalVars.SourceData;
+            XElement xGroup = data.Descendants("Group").FirstOrDefault(g => g.Attribute("Id").Value.Equals(item.Group.Id) && g.Attribute("Name").Value.Equals(item.Group.Name));
             
             XElement xApp = new XElement("App");
             xApp.SetAttributeValue("Id", item.Id);
@@ -141,35 +146,35 @@ namespace OnceRunApp.Services
             xApp.SetAttributeValue("ExePath", item.ExePath);
 
             xGroup.Add(xApp);
-            XmlService.SaveAppData(xmlSource);
+            data.SavaAsSource();
         }
 
         public static void UpdateAppItem(AppItem item)
         {
-            XDocument xmlSource = XmlService.LoadAppData();
-            XElement xApp = xmlSource.Descendants("App").FirstOrDefault(a => a.Attribute("Id").Value.Equals(item.Id));
+            XDocument data = GlobalVars.SourceData;
+            XElement xApp = data.Descendants("App").FirstOrDefault(a => a.Attribute("Id").Value.Equals(item.Id));
             if (xApp != null)
             {
                 xApp.SetAttributeValue("Name", item.Name);
                 xApp.SetAttributeValue("ExePath", item.ExePath);
-                XmlService.SaveAppData(xmlSource);
+                data.SavaAsSource();
             }
         }
 
         public static void RemoveAppItem(AppItem item)
         {
-            XDocument xmlSource = XmlService.LoadAppData();
-            XElement xApp = xmlSource.Descendants("App").FirstOrDefault(a => a.Attribute("Id").Value.Equals(item.Id));
+            XDocument data =GlobalVars.SourceData;
+            XElement xApp = data.Descendants("App").FirstOrDefault(a => a.Attribute("Id").Value.Equals(item.Id));
             if (xApp != null)
             {
                 xApp.Remove();
-                XmlService.SaveAppData(xmlSource);
+                data.SavaAsSource();
             }
         }
 
         #endregion
 
-        #region Run Service functions
+        #region Service functions
 
         public static void RunApps(string gId)
         {
@@ -186,9 +191,9 @@ namespace OnceRunApp.Services
                     {
                         try
                         {
-                            if (KVSettings.AppRunIntervalTime > 0)
+                            if (GlobalVars.AppRunIntervalTime > 0)
                             {
-                                Thread.Sleep(KVSettings.AppRunIntervalTime);
+                                Thread.Sleep(GlobalVars.AppRunIntervalTime);
                             }
 
                             //Run app by .NET API
@@ -207,6 +212,19 @@ namespace OnceRunApp.Services
             })).Start();
         }
 
+        public static void CreateShortcut(AppGroup group)
+        {
+            string desktopDirectory = string.Empty;
+            IWshShortcut shortcut = null;
+            WshShellClass shellClass = new WshShellClass();
+
+            desktopDirectory = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+            shortcut = (IWshShortcut)shellClass.CreateShortcut(Path.Combine(desktopDirectory, string.Format("{0}.lnk", group.Name)));
+            shortcut.TargetPath = Application.ExecutablePath;
+            shortcut.Description = group.Name;
+            shortcut.Arguments = group.Id;
+            shortcut.Save();
+        }
         #endregion
 
     }

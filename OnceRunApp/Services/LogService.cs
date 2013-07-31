@@ -13,7 +13,7 @@ namespace OnceRunApp.Services
 
         private static Logger logger;
 
-        public static Logger Logger
+        private static Logger Logger
         {
             get
             {
@@ -25,5 +25,26 @@ namespace OnceRunApp.Services
                 return logger;
             }
         }
+
+        public static void Info(string message)
+        {
+            Logger.Info(message);
+        }
+
+        public static void Error(string message)
+        {
+            Logger.Error(message);
+        }
+
+        public static void Error(string message, Exception exception)
+        {
+            Logger.ErrorException(message, exception);
+        }
+
+        public static void Warn(string message)
+        {
+            Logger.Warn(message);
+        }
+
     }
 }

@@ -5,10 +5,12 @@ using System.Text;
 
 namespace OnceRunApp.Models
 {
-    public enum FormAction
+    public enum GroupAction
     {
-        NewItem,
-        EditItem,
-        DeleteItem
+        New,
+        Edit,
+        Delete,
+        Shortcut,
+        Run
     }
 }

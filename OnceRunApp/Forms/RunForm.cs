@@ -9,11 +9,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using OnceRunApp.Base;
 using OnceRunApp.Models;
 using OnceRunApp.Controls;
-using OnceRunApp.Configs;
 using OnceRunApp.UIHelpers;
-using OnceRunApp.Utilities;
+using OnceRunApp.Handlers;
 using OnceRunApp.Services;
 
 
@@ -24,138 +24,82 @@ namespace OnceRunApp
     /// </summary>
     public partial class RunForm : Form
     {
+        
+        //Methods
+
         public RunForm()
         {
             InitializeComponent();
+
+            this.InitializeHandlers();
         }
 
+        /// <summary>
+        /// Register form and control's related event handlers,the event logic is to be contained in handlers. 
+        /// </summary>
+        private void InitializeHandlers()
+        {
+            //Form Load
+            this.Load += (object sender, EventArgs e) =>
+            {
+                HandlerHub.Invoke(new FormStartupHandler(this));
+            };
+
+            //New AppGroup
+            this.btnAddGroup.Click += (object sender, EventArgs e) =>
+            {
+                HandlerHub.Invoke(new AppGroupHandler(this, GroupAction.New));
+            };
+
+            //Edit AppGroup
+            this.btnEditGroup.Click += (object sender, EventArgs e) =>
+            {
+                HandlerHub.Invoke(new AppGroupHandler(this, GroupAction.Edit));
+            };
+
+            //Delete AppGroup
+            this.btnRemoveGroup.Click += (object sender, EventArgs e) =>
+            {
+                HandlerHub.Invoke(new AppGroupHandler(this, GroupAction.Delete));
+            };
+
+            //AppGroup Shortcut
+            this.btnShortcut.Click += (object sender, EventArgs e) =>
+            {
+                HandlerHub.Invoke(new AppGroupHandler(this, GroupAction.Shortcut));
+            };
+
+            //Run AppGroup
+            this.btnRunApps.Click += (object sender, EventArgs e) =>
+            {
+                HandlerHub.Invoke(new AppGroupHandler(this, GroupAction.Run));
+            };
+
+            //About me
+            this.btnAbout.Click += (object sender, EventArgs e) =>
+            {
+                HandlerHub.Invoke(new AboutMeHandler(this));
+            };
+        }
+
+        
         //Properties
-        public AppGroupTabPage CurrentTab
+
+        public TabControl AppGroupTab
+        {
+            get
+            {
+                return this.tabAppGroup;
+            }
+        }
+        
+        public AppGroupTabPage CurrentPage
         {
             get
             {
                 return this.tabAppGroup.SelectedTab as AppGroupTabPage;
             }
         }
-
-        #region Form Init
-
-        private void RunForm_Load(object sender, EventArgs e)
-        {
-            this.BindDataSource();
-            this.BindAppRunEvents();
-        }
-
-        private void BindDataSource()
-        {
-            foreach (AppGroup group in AppService.GetAppGroups())
-            {
-                this.tabAppGroup.Controls.Add(new AppGroupTabPage(group));
-            }
-
-           this.tabAppGroup.ResumeLayout(true);
-        }
-
-        private void BindAppRunEvents()
-        {
-            AppService.OnAppRunError += AppService_OnAppRunError;
-        }
-
-        private void AppService_OnAppRunError(AppItemEventArgs e)
-        {
-            UiMessager.ShowError(string.Format("App [{0}] is run error,{1}!",e.Item.Name,e.Error.Message));
-        }
-        #endregion
-
-        #region Button Event Handlers
-
-        private void BtnAddGroup_Click(object sender, EventArgs e)
-        {
-            AddAppGroup();
-        }
-
-        private void AddAppGroup()
-        {
-            GroupForm form = new GroupForm(FormAction.NewItem);
-            if (form.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
-            {
-                AppService.AddAppGroup(form.Group);
-                this.tabAppGroup.Controls.Add(new AppGroupTabPage(form.Group));
-                this.tabAppGroup.ResumeLayout(true);
-            }
-        }
-
-        private void BtnEditGroup_Click(object sender, EventArgs e)
-        {
-            EditAppGroup();
-        }
-
-        private void EditAppGroup()
-        {            
-            if (this.CurrentTab != null)
-            {
-                GroupForm form = new GroupForm(FormAction.EditItem);
-                form.Group = this.CurrentTab.Group;
-                if (form.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
-                {
-                    AppService.UpdateAppGroup(form.Group);
-                    this.CurrentTab.Group = form.Group;
-                }
-            }
-        }
-
-        private void BtnRemoveGroup_Click(object sender, EventArgs e)
-        {
-            RemoveAppGroup();
-        }
-
-        private void RemoveAppGroup()
-        {
-            if (this.CurrentTab != null)
-            {
-                if (UiMessager.ShowConfirm("Are you sure to remove current group?") == System.Windows.Forms.DialogResult.Yes)
-                {
-                    AppService.RemoveAppGroup(this.CurrentTab.Group);
-                    this.tabAppGroup.Controls.Remove(this.CurrentTab);
-                    this.tabAppGroup.ResumeLayout(true);
-                }
-            }
-        }
-
-        private void BtnShortcut_Click(object sender, EventArgs e)
-        {
-            CreateShortcut();
-        }
-
-        private void CreateShortcut()
-        {
-            if (this.CurrentTab != null)
-            {
-                ShortcutService.CreateShortcut(this.CurrentTab.Group);
-                UiMessager.ShowInfo("Group shortcut is created sucessfully!");
-            }
-        }
-
-        private void BtnRunApps_Click(object sender, EventArgs e)
-        {
-            RunSelectedApps();
-        }
-
-        private void RunSelectedApps()
-        {
-            if (this.CurrentTab != null)
-            {
-                AppService.RunApps(this.CurrentTab.Group);
-            }
-        }
-
-        private void BtnAbout_Click(object sender, EventArgs e)
-        {
-            AboutBox box = new AboutBox();
-            box.ShowDialog(this);
-        }
-
-        #endregion
-
+        
     }
 }

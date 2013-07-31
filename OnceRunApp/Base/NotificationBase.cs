@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 
-namespace OnceRunApp.Models
+namespace OnceRunApp.Base
 {
     public class NotificationBase : INotifyPropertyChanged
     {

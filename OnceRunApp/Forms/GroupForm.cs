@@ -19,7 +19,7 @@ namespace OnceRunApp
             InitializeComponent();
         }
 
-        public GroupForm(FormAction action)
+        public GroupForm(GroupAction action)
             : base()
         {
             InitializeComponent();
@@ -28,7 +28,7 @@ namespace OnceRunApp
 
         
         public AppGroup Group { get; set; }
-        public FormAction Action { get; set; }
+        public GroupAction Action { get; set; }
 
         #region Form Init
 
@@ -39,7 +39,7 @@ namespace OnceRunApp
         }
         private void InitDataSource()
         {
-            if (this.Action == FormAction.NewItem)
+            if (this.Action == GroupAction.New)
             {
                 this.Group = new AppGroup("");
             }
@@ -49,13 +49,13 @@ namespace OnceRunApp
 
         private void HightlightInput()
         {
-            if (this.Action == FormAction.NewItem)
+            if (this.Action == GroupAction.New)
             {
                 this.pbTitle.Image = OnceRunApp.Properties.Resources.tab_add;
                 this.ActiveControl = this.txtGroupName;
                 this.txtGroupName.Focus();
             }
-            if (this.Action == FormAction.EditItem)
+            if (this.Action == GroupAction.Edit)
             {
                 this.pbTitle.Image = OnceRunApp.Properties.Resources.tab_edit;
                 this.txtGroupName.SelectionStart = 0;
