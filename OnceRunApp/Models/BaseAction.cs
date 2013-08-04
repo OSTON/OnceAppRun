@@ -5,7 +5,7 @@ using System.Text;
 
 namespace OnceRunApp.Models
 {
-    public enum GroupAction
+    public enum BaseAction
     {
         New,
         Edit,

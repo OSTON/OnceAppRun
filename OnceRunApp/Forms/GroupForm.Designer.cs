@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GroupForm));
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.txtGroupName = new System.Windows.Forms.TextBox();
@@ -58,7 +59,6 @@
             this.btnOK.Size = new System.Drawing.Size(32, 32);
             this.btnOK.TabIndex = 0;
             this.btnOK.UseVisualStyleBackColor = true;
-            this.btnOK.Click += new System.EventHandler(this.BtnOK_Click);
             // 
             // txtGroupName
             // 
@@ -119,12 +119,14 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.DoubleBuffered = true;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "GroupForm";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "GroupForm";
-            this.Load += new System.EventHandler(this.GroupForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbTitle)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

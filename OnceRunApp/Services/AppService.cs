@@ -33,6 +33,7 @@ namespace OnceRunApp.Services
                          {
                              Id = e.Attribute("Id").Value,
                              Name = e.Attribute("Name").Value,
+                             Description = e.Attribute("Description").Value,
                              AppItems = GetAppItems(e)
                          };
 
@@ -48,6 +49,7 @@ namespace OnceRunApp.Services
             {
                 group.Id = xGroup.Attribute("Id").Value;
                 group.Name = xGroup.Attribute("Name").Value;
+                group.Description = xGroup.Attribute("Description").Value;
                 group.AppItems = GetAppItems(xGroup);
             }
 
@@ -87,6 +89,7 @@ namespace OnceRunApp.Services
             XElement xGroup = new XElement("Group");
             xGroup.SetAttributeValue("Id", group.Id);
             xGroup.SetAttributeValue("Name", group.Name);
+            xGroup.SetAttributeValue("Description", group.Description);
             foreach (AppItem item in group.AppItems)
             {
                 XElement xApp = new XElement("App");
@@ -108,6 +111,7 @@ namespace OnceRunApp.Services
             if (xGroup != null)
             {
                 xGroup.SetAttributeValue("Name", group.Name);
+                xGroup.SetAttributeValue("Description", group.Description);
                 data.SavaAsSource();
             }
         }

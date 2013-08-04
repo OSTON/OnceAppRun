@@ -19,7 +19,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RunForm));
             this.pnlAppTab = new System.Windows.Forms.Panel();
-            this.tabAppGroup = new System.Windows.Forms.TabControl();
+            this.tabApp = new System.Windows.Forms.TabControl();
             this.tsOperation = new System.Windows.Forms.ToolStrip();
             this.btnRunApps = new System.Windows.Forms.ToolStripButton();
             this.btnShortcut = new System.Windows.Forms.ToolStripButton();
@@ -38,20 +38,21 @@
             this.pnlAppTab.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlAppTab.Controls.Add(this.tabAppGroup);
+            this.pnlAppTab.Controls.Add(this.tabApp);
             this.pnlAppTab.Location = new System.Drawing.Point(0, 28);
             this.pnlAppTab.Name = "pnlAppTab";
             this.pnlAppTab.Size = new System.Drawing.Size(664, 383);
             this.pnlAppTab.TabIndex = 2;
             // 
-            // tabAppGroup
+            // tabApp
             // 
-            this.tabAppGroup.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabAppGroup.Location = new System.Drawing.Point(0, 0);
-            this.tabAppGroup.Name = "tabAppGroup";
-            this.tabAppGroup.SelectedIndex = 0;
-            this.tabAppGroup.Size = new System.Drawing.Size(664, 383);
-            this.tabAppGroup.TabIndex = 0;
+            this.tabApp.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabApp.Location = new System.Drawing.Point(0, 0);
+            this.tabApp.Name = "tabApp";
+            this.tabApp.SelectedIndex = 0;
+            this.tabApp.ShowToolTips = true;
+            this.tabApp.Size = new System.Drawing.Size(664, 383);
+            this.tabApp.TabIndex = 0;
             // 
             // tsOperation
             // 
@@ -166,7 +167,7 @@
         private System.Windows.Forms.ToolStripButton btnShortcut;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.TabControl tabAppGroup;
+        private System.Windows.Forms.TabControl tabApp;
 
 
     }

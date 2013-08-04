@@ -48,31 +48,31 @@ namespace OnceRunApp
             //New AppGroup
             this.btnAddGroup.Click += (object sender, EventArgs e) =>
             {
-                HandlerHub.Invoke(new AppGroupHandler(this, GroupAction.New));
+                HandlerHub.Invoke(new MenuActionHandler(this, BaseAction.New));
             };
 
             //Edit AppGroup
             this.btnEditGroup.Click += (object sender, EventArgs e) =>
             {
-                HandlerHub.Invoke(new AppGroupHandler(this, GroupAction.Edit));
+                HandlerHub.Invoke(new MenuActionHandler(this, BaseAction.Edit));
             };
 
             //Delete AppGroup
             this.btnRemoveGroup.Click += (object sender, EventArgs e) =>
             {
-                HandlerHub.Invoke(new AppGroupHandler(this, GroupAction.Delete));
+                HandlerHub.Invoke(new MenuActionHandler(this, BaseAction.Delete));
             };
 
             //AppGroup Shortcut
             this.btnShortcut.Click += (object sender, EventArgs e) =>
             {
-                HandlerHub.Invoke(new AppGroupHandler(this, GroupAction.Shortcut));
+                HandlerHub.Invoke(new MenuActionHandler(this, BaseAction.Shortcut));
             };
 
             //Run AppGroup
             this.btnRunApps.Click += (object sender, EventArgs e) =>
             {
-                HandlerHub.Invoke(new AppGroupHandler(this, GroupAction.Run));
+                HandlerHub.Invoke(new MenuActionHandler(this, BaseAction.Run));
             };
 
             //About me
@@ -89,15 +89,15 @@ namespace OnceRunApp
         {
             get
             {
-                return this.tabAppGroup;
+                return this.tabApp;
             }
         }
         
-        public AppGroupTabPage CurrentPage
+        public AppTabPage CurrentPage
         {
             get
             {
-                return this.tabAppGroup.SelectedTab as AppGroupTabPage;
+                return this.tabApp.SelectedTab as AppTabPage;
             }
         }
         

@@ -71,6 +71,7 @@
   <ItemGroup>
     <Compile Include="Base\ExtensionMethods.cs" />
     <Compile Include="Base\GlobalVars.cs" />
+    <Compile Include="Base\MyLogger.cs" />
     <Compile Include="Forms\AboutBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,7 +88,7 @@
     <Compile Include="Controls\AppControl.Designer.cs">
       <DependentUpon>AppControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\AppGroupTabPage.cs">
+    <Compile Include="Controls\AppTabPage.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Forms\GroupForm.cs">
@@ -97,15 +98,18 @@
       <DependentUpon>GroupForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Handlers\AboutMeHandler.cs" />
-    <Compile Include="Handlers\AppGroupHandler.cs" />
+    <Compile Include="Handlers\AppControlLoadHandler.cs" />
+    <Compile Include="Handlers\GroupAddedHandler.cs" />
+    <Compile Include="Handlers\MenuActionHandler.cs" />
     <Compile Include="Handlers\FormStartupHandler.cs" />
+    <Compile Include="Handlers\GroupFormLoadHandler.cs" />
     <Compile Include="Models\AppGroup.cs" />
     <Compile Include="Models\AppItem.cs" />
     <Compile Include="Models\AppItemAction.cs" />
     <Compile Include="Models\AppItemChangedEventArgs.cs" />
     <Compile Include="Models\AppItemEventArgs.cs" />
-    <Compile Include="Models\GroupAction.cs" />
-    <Compile Include="Base\NotificationBase.cs" />
+    <Compile Include="Models\BaseAction.cs" />
+    <Compile Include="Base\ModelBase.cs" />
     <Compile Include="Forms\RunForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,7 +121,6 @@
     <Compile Include="Services\AppService.cs" />
     <Compile Include="UIHelpers\RoundRectangle.cs" />
     <Compile Include="UIHelpers\UiFactory.cs" />
-    <Compile Include="Services\LogService.cs" />
     <Compile Include="UIHelpers\UiMessager.cs" />
     <EmbeddedResource Include="Forms\AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
@@ -161,8 +164,11 @@
     <Content Include="AppSetting.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\account_unlock_screen_bg.png" />
     <Content Include="Images\brushed-metal.png" />
     <Content Include="Images\glass.png" />
+    <Content Include="Images\v5_edit_mode_bottom_bar_list_item_bg_pressed_light.9.png" />
+    <Content Include="Images\word_photo_bg.png" />
     <None Include="Images\hsv-gradient.png" />
     <Content Include="Images\noise.png" />
     <None Include="bin\App.png" />

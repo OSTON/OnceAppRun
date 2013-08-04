@@ -7,8 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
+using OnceRunApp.Base;
 using OnceRunApp.Models;
-using OnceRunApp.UIHelpers;
+using OnceRunApp.Handlers;
 
 namespace OnceRunApp
 {
@@ -17,76 +18,57 @@ namespace OnceRunApp
         public GroupForm()
         {
             InitializeComponent();
+
+            this.InitializeHandlers();
         }
 
-        public GroupForm(GroupAction action)
-            : base()
+        public GroupForm(BaseAction action)
         {
             InitializeComponent();
             this.Action = action;
+            this.InitializeHandlers();
         }
 
-        
+
         public AppGroup Group { get; set; }
-        public GroupAction Action { get; set; }
-
-        #region Form Init
-
-        private void GroupForm_Load(object sender, EventArgs e)
+        public BaseAction Action { get; set; }
+        public TextBox NameTextBox
         {
-            this.InitDataSource();
-            this.HightlightInput();
-        }
-        private void InitDataSource()
-        {
-            if (this.Action == GroupAction.New)
+            get
             {
-                this.Group = new AppGroup("");
+               return this.txtGroupName;
             }
-
-            this.txtGroupName.DataBindings.Add(new Binding("Text", this.Group, "Name"));
         }
-
-        private void HightlightInput()
+        public TextBox DescriptionTextBox
         {
-            if (this.Action == GroupAction.New)
+            get
             {
-                this.pbTitle.Image = OnceRunApp.Properties.Resources.tab_add;
-                this.ActiveControl = this.txtGroupName;
-                this.txtGroupName.Focus();
+                return this.textBox1;
             }
-            if (this.Action == GroupAction.Edit)
+        }
+        public PictureBox FlagPictureBox
+        {
+            get
             {
-                this.pbTitle.Image = OnceRunApp.Properties.Resources.tab_edit;
-                this.txtGroupName.SelectionStart = 0;
-                this.txtGroupName.SelectionLength = this.Name.Length;
-                this.txtGroupName.Select();
+                return this.pbTitle;
             }
         }
 
-        #endregion
 
-        #region Button Event Handlers
-
-        private void BtnOK_Click(object sender, EventArgs e)
+        public void InitializeHandlers()
         {
-            this.DialogResult = System.Windows.Forms.DialogResult.OK;
+            //Form Load
+            this.Load += (object sender, EventArgs e) =>
+            {
+                HandlerHub.Invoke(new GroupFormLoadHandler(this));
+            };
+
+            //Add Group
+            this.btnOK.Click += (object sender, EventArgs e) =>
+            {
+                HandlerHub.Invoke(new GroupAddedHandler(this));
+            };
         }
-
-        #endregion
-
-        #region Override Methods
-
-        protected override void OnPaint(PaintEventArgs e)
-        {
-            base.OnPaint(e);
-
-            System.IntPtr ptr = RoundRectangle.CreateRoundRectRegion(0, 0, this.Width, this.Height, 20, 20); // _BoarderRaduis can be adjusted to your needs, try 15 to start.
-            this.Region = System.Drawing.Region.FromHrgn(ptr);
-            RoundRectangle.DeleteObject(ptr);
-        }
-
-        #endregion
 
     }
 }

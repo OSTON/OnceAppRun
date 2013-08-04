@@ -34,7 +34,7 @@ namespace OnceRunApp.Handlers
             {
                 foreach (AppGroup group in AppService.GetAppGroups())
                 {
-                    this.Form.AppGroupTab.Controls.Add(new AppGroupTabPage(group));
+                    this.Form.AppGroupTab.Controls.Add(new AppTabPage(group));
                 }
                 this.Form.AppGroupTab.ResumeLayout(true);
 

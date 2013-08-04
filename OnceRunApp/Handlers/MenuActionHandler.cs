@@ -11,17 +11,17 @@ using OnceRunApp.UIHelpers;
 
 namespace OnceRunApp.Handlers
 {
-    public class AppGroupHandler : IHandler
+    public class MenuActionHandler : IHandler
     {
 
-        public AppGroupHandler(RunForm form,GroupAction action)
+        public MenuActionHandler(RunForm form,BaseAction action)
         {
             this.Form = form;
             this.Action = action; 
         }
 
         public RunForm Form { get; private set; }
-        public GroupAction Action { get;private set; }   
+        public BaseAction Action { get;private set; }   
 
         public void Execute()
         {
@@ -31,16 +31,16 @@ namespace OnceRunApp.Handlers
 
                 switch (this.Action)
                 {
-                    case GroupAction.New: //New App Group
+                    case BaseAction.New: //New App Group
                         
                         if (form.ShowDialog(this.Form) == System.Windows.Forms.DialogResult.OK)
                         {
                             AppService.AddAppGroup(form.Group);
-                            this.Form.AppGroupTab.Controls.Add(new AppGroupTabPage(form.Group));
+                            this.Form.AppGroupTab.Controls.Add(new AppTabPage(form.Group));
                             this.Form.AppGroupTab.ResumeLayout(true);
                         }
                         break;
-                    case GroupAction.Edit: //Edit App Group
+                    case BaseAction.Edit: //Edit App Group
 
                         if (this.Form.CurrentPage != null)
                         {
@@ -52,7 +52,7 @@ namespace OnceRunApp.Handlers
                             }
                         }
                         break;
-                    case GroupAction.Delete: //Delete App Group
+                    case BaseAction.Delete: //Delete App Group
 
                         if (this.Form.CurrentPage != null)
                         {
@@ -64,7 +64,7 @@ namespace OnceRunApp.Handlers
                             }
                         }
                         break;
-                    case GroupAction.Shortcut: //Create App Group Shortcut
+                    case BaseAction.Shortcut: //Create App Group Shortcut
 
                         if (this.Form.CurrentPage != null)
                         {
@@ -73,7 +73,7 @@ namespace OnceRunApp.Handlers
                         }
                         break;
 
-                    case GroupAction.Run: //Run App Group Items
+                    case BaseAction.Run: //Run App Group Items
                         
                         if (this.Form.CurrentPage != null)
                         {

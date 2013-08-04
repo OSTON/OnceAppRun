@@ -7,7 +7,7 @@ using OnceRunApp.Base;
 
 namespace OnceRunApp.Models
 {
-    public class AppItem : NotificationBase
+    public class AppItem : ModelBase
     {
         public AppItem()
         {
@@ -49,6 +49,20 @@ namespace OnceRunApp.Models
         }
 
         public AppGroup Group { get; set; }
-        
+
+        public override bool Validate()
+        {
+            if (string.IsNullOrEmpty(this.name))
+            {
+                throw new MyAlertException("App name is empty!");
+            }
+
+            if (string.IsNullOrEmpty(this.exePath))
+            {
+                throw new MyAlertException("App execution path is empty!");
+            }
+
+            return base.Validate();
+        }
     }
 }

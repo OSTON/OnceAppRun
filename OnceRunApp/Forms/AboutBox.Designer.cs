@@ -131,7 +131,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(374, 214);
             this.Controls.Add(this.lblCopyRight);
@@ -143,7 +143,6 @@
             this.Controls.Add(this.lblDescription);
             this.Controls.Add(this.lblApplication);
             this.Controls.Add(this.pbLogo);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AboutBox";
@@ -151,7 +150,7 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "AboutBox";
+            this.Text = "About OnceRunApp";
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -73,6 +73,16 @@ namespace OnceRunApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap account_unlock_screen_bg {
+            get {
+                object obj = ResourceManager.GetObject("account_unlock_screen_bg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap App {
             get {
                 object obj = ResourceManager.GetObject("App", resourceCulture);
@@ -166,6 +176,26 @@ namespace OnceRunApp.Properties {
         internal static System.Drawing.Bitmap tab_remove {
             get {
                 object obj = ResourceManager.GetObject("tab_remove", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap v5_edit_mode_bottom_bar_list_item_bg_pressed_light_9 {
+            get {
+                object obj = ResourceManager.GetObject("v5_edit_mode_bottom_bar_list_item_bg_pressed_light.9", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap word_photo_bg {
+            get {
+                object obj = ResourceManager.GetObject("word_photo_bg", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

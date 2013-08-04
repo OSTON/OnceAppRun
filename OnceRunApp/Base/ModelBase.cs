@@ -6,7 +6,7 @@ using System.Text;
 
 namespace OnceRunApp.Base
 {
-    public class NotificationBase : INotifyPropertyChanged
+    public class ModelBase : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -26,6 +26,11 @@ namespace OnceRunApp.Base
             }
             field = value;
             OnPropertyChanged(propertyName);
+            return true;
+        }
+
+        public virtual bool Validate()
+        {
             return true;
         }
     }

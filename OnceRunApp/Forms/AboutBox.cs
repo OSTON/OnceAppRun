@@ -114,18 +114,6 @@ namespace OnceRunApp
         }       
         #endregion
 
-        #region Override Methods
-
-        protected override void OnPaint(PaintEventArgs e)
-        {
-            base.OnPaint(e);
-
-            System.IntPtr ptr = RoundRectangle.CreateRoundRectRegion(0, 0, this.Width, this.Height, 20, 20); // _BoarderRaduis can be adjusted to your needs, try 15 to start.
-            this.Region = System.Drawing.Region.FromHrgn(ptr);
-            RoundRectangle.DeleteObject(ptr);
-        }
-
-        #endregion
 
     }
 }

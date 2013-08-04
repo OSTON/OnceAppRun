@@ -7,7 +7,7 @@ using OnceRunApp.Base;
 
 namespace OnceRunApp.Models
 {
-    public class AppGroup : NotificationBase
+    public class AppGroup : ModelBase
     {
         public AppGroup()
         {
@@ -36,7 +36,25 @@ namespace OnceRunApp.Models
             get { return name; }
             set { SetField(ref name, value, "Name"); }
         }
+
+        private string description;
+
+        public string Description
+        {
+            get { return description; }
+            set { SetField(ref description, value, "Description"); }
+        }
     
         public List<AppItem> AppItems { get; set; }
+
+        public override bool Validate()
+        {
+            if (string.IsNullOrEmpty(this.name))
+            {
+                throw new MyAlertException("App group name is empty!");
+            }
+
+            return base.Validate();
+        }
     }
 }

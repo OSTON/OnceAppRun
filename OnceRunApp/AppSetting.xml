@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Apps>
-  <Group Id="D87D2022-6808-4E08-BFD0-DE51478CCC73" Name="Proxy">
+  <Group Id="D87D2022-6808-4E08-BFD0-DE51478CCC73" Name="Proxy" Description="Firefox+GoAgent">
     <App Id="7E345F67-386F-4727-AAE8-65660634E0D8" Name="GoAgent" ExePath="E:\Trainings\DotNet\Windows\OnceRunApp\OnceRunApp\bin\GoAgent.exe"  />
     <App Id="3BD4CC51-FC3B-4BFA-B52E-FCA24FB433E3" Name="Firefox" ExePath="E:\Trainings\DotNet\Windows\OnceRunApp\OnceRunApp\bin\Firefox.exe" />
   </Group>
-  <Group Id="4BC4DBA6-0AAF-42B4-A4CB-6021B02B3C80" Name="Development">
+  <Group Id="4BC4DBA6-0AAF-42B4-A4CB-6021B02B3C80" Name="Development" Description="Development Tools">
     <App Id="5A78BD6A-ACD1-449A-AC46-B924949AAC00" Name="GoAgent" ExePath="E:\Trainings\DotNet\Windows\OnceRunApp\OnceRunApp\bin\GoAgent.exe"  />
     <App Id="4B523598-EDD0-4CBB-873F-D23A5680A2D2" Name="Firefox" ExePath="E:\Trainings\DotNet\Windows\OnceRunApp\OnceRunApp\bin\Firefox.exe"  />
   </Group>  
