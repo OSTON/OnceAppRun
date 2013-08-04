@@ -69,7 +69,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Base\ExtensionMethods.cs" />
+    <Compile Include="Base\Extensions.cs" />
     <Compile Include="Base\GlobalVars.cs" />
     <Compile Include="Base\MyLogger.cs" />
     <Compile Include="Forms\AboutBox.cs">
@@ -98,8 +98,10 @@
       <DependentUpon>GroupForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Handlers\AboutMeHandler.cs" />
+    <Compile Include="Handlers\AppChoosedHandler.cs" />
     <Compile Include="Handlers\AppControlLoadHandler.cs" />
     <Compile Include="Handlers\GroupAddedHandler.cs" />
+    <Compile Include="Handlers\GroupTabLoadHandler.cs" />
     <Compile Include="Handlers\MenuActionHandler.cs" />
     <Compile Include="Handlers\FormStartupHandler.cs" />
     <Compile Include="Handlers\GroupFormLoadHandler.cs" />
@@ -119,9 +121,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AppService.cs" />
-    <Compile Include="UIHelpers\RoundRectangle.cs" />
-    <Compile Include="UIHelpers\UiFactory.cs" />
-    <Compile Include="UIHelpers\UiMessager.cs" />
+    <Compile Include="Base\UIMessager.cs" />
     <EmbeddedResource Include="Forms\AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>

@@ -6,7 +6,7 @@ using System.Xml.Linq;
 
 namespace OnceRunApp.Base
 {
-    public static  class ExtensionMethods
+    public static  class Extensions
     {
 
         #region XDocument

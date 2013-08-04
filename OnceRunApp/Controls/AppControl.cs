@@ -10,7 +10,9 @@ using System.ComponentModel.Design;
 using System.ComponentModel.Design.Serialization;
 using System.Diagnostics;
 
+using OnceRunApp.Base;
 using OnceRunApp.Models;
+using OnceRunApp.Handlers;
 
 /**
  * @AUTHOR: OSTON BETTER     @EMAIL:  OSTONBETTER@GMAIL.COM
@@ -30,20 +32,49 @@ namespace OnceRunApp.Controls
         public AppControl()
         {
             InitializeComponent();
+
+            this.InitializeHandlers();
         }
 
         public AppControl(AppItem item)
         {
             InitializeComponent();
-
-            this.BindDataSource(item);
-            this.BindDataEvents();
+            this.Item = item;
+            this.InitializeHandlers();
         }
 
         //Properties
 
         public int Index { get; set; }
         public AppItem Item { get; set; }
+        public TextBox NameTextBox
+        {
+            get
+            {
+                return this.txtName;
+            }
+        }
+        public TextBox ExePathTextBox
+        {
+            get
+            {
+                return this.txtExePath;
+            }
+        }
+        public Button AddButton
+        {
+            get
+            {
+                return this.btnAdd;
+            }
+        }
+        public Button RemoveButton
+        {
+            get
+            {
+                return this.btnRemove;
+            }
+        }
 
         //Events
 
@@ -55,94 +86,71 @@ namespace OnceRunApp.Controls
         public event OnAppItemRemovedHandler OnAppItemRemoved;
         public event OnAppItemChangedHandler OnAppItemChanged;
 
-        #region Control Init
 
-        private void BindDataSource(AppItem item)
+        public void InitializeHandlers()
         {
-            this.Item = item;
-            this.Dock = DockStyle.Fill;
+            //Control Load
+            this.Load += (object sender, EventArgs e) =>
+            {
+                HandlerHub.Invoke(new AppControlLoadHandler(this));
+            };
 
-            this.DataBindings.Add(new Binding("Tag", this.Item, "Id"));
-            this.txtName.DataBindings.Add(new Binding("Text", this.Item, "Name"));
-            this.txtExePath.DataBindings.Add(new Binding("Text", this.Item, "ExePath"));
+            //Data Changed
+            this.Item.PropertyChanged += (object sender, PropertyChangedEventArgs e) =>
+            {
+                if (e.PropertyName.Equals("Action"))
+                {
+                    this.DisplayActionButtons(this.Item);
+                    return;
+                }
 
-            this.SetActions(item);
+                if (OnAppItemChanged != null)
+                {
+                    OnAppItemChanged(sender, new AppItemChangedEventArgs(this.Item, e.PropertyName));
+                }
+            };
+
+
+            this.AddButton.Click += (object sender, EventArgs e) =>
+            {
+                if (OnAppItemAdded != null)
+                {
+                    OnAppItemAdded(this, new AppItemEventArgs(new AppItem()));
+                }
+            };
+
+            this.RemoveButton.Click += (object sender, EventArgs e) =>
+            {
+                if (OnAppItemRemoved != null)
+                {
+                    OnAppItemRemoved(this, new AppItemEventArgs(this.Item));
+                }
+            };
+
+            this.btnChooseExe.Click += (object sender, EventArgs e) =>
+            {
+                HandlerHub.Invoke(new AppChoosedHandler(this));
+            };
         }
 
-        private void SetActions(AppItem item)
+        public void DisplayActionButtons(AppItem item)
         {
             switch (item.Action)
             {
                 case AppItemAction.All:
-                    this.btnRemove.Visible = true;
-                    this.btnAdd.Visible = true;
+                    this.RemoveButton.Visible = true;
+                    this.AddButton.Visible = true;
                     break;
                 case AppItemAction.Add:
-                    this.btnRemove.Visible = false;
-                    this.btnAdd.Visible = true;
+                    this.RemoveButton.Visible = false;
+                    this.AddButton.Visible = true;
                     break;
                 case AppItemAction.Delete:
-                    this.btnAdd.Visible = false;
-                    this.btnRemove.Visible = true;
+                    this.AddButton.Visible = false;
+                    this.RemoveButton.Visible = true;
                     break;
             }
         }
-
-        private void BindDataEvents()
-        {
-            this.Item.PropertyChanged += OnDataPropertyChanged;
-        }
-
-        #endregion
-
-        #region Data Event Handlers
-
-        private void OnDataPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            //Handle self event
-            if (e.PropertyName.Equals("Action"))
-            {
-                SetActions(this.Item);
-                return;
-            }
-
-            //Fire subscribe event listener
-            if (OnAppItemChanged != null)
-            {
-                OnAppItemChanged(sender, new AppItemChangedEventArgs(this.Item, e.PropertyName));
-            }
-        }
-        #endregion
-
-        #region Button Event Handlers
-
-        private void BtnChooseExe_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog fileDialog = new OpenFileDialog();
-            fileDialog.Filter = "EXE Files(*.exe)|*.exe|All Files|*.*";
-            if (fileDialog.ShowDialog() == DialogResult.OK)
-            {
-                this.txtExePath.Text = this.Item.ExePath = fileDialog.FileName;
-            }
-        }
-
-        private void BtnAdd_Click(object sender, EventArgs e)
-        {
-            if (OnAppItemAdded != null)
-            {
-                OnAppItemAdded(this, new AppItemEventArgs(new AppItem()));
-            }
-        }
-
-        private void BtnRemove_Click(object sender, EventArgs e)
-        {
-            if (OnAppItemRemoved != null)
-            {
-                OnAppItemRemoved(this, new AppItemEventArgs(this.Item));
-            }
-        }
-        
-        #endregion
 
     }
 }

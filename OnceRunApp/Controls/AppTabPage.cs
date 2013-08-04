@@ -6,16 +6,26 @@ using System.Windows.Forms;
 
 using OnceRunApp.Base;
 using OnceRunApp.Models;
-using OnceRunApp.UIHelpers;
 using OnceRunApp.Services;
 
 namespace OnceRunApp.Controls
 {
     public class AppTabPage : TabPage
     {
+        public AppTabPage()
+            : base()
+        {
+            this.AppControls = new List<AppControl>();
+            this.InitializeContainers();
+        }
+
         public AppTabPage(AppGroup group)
             : base()
-        {            
+        {
+            this.Group = group;
+            this.AppControls = new List<AppControl>();
+            this.InitializeContainers();
+
             this.BindDataSource(group);
         }
 
@@ -23,16 +33,13 @@ namespace OnceRunApp.Controls
 
         public int AppIndex { get;private set; }
         public AppGroup Group { get; set; }
-        public TableLayoutPanel Panel { get;private set; }
+        public TableLayoutPanel TableLayout { get;private set; }
         public List<AppControl> AppControls { get; set; }
 
         #region Control Init
 
         private void BindDataSource(AppGroup group)
         {
-            this.Group = group;
-            this.Panel = UiFactory.CreateTableLayoutPanel();
-            this.AppControls = new List<AppControl>();
        
             //this.AutoScroll = true;
             this.DataBindings.Add(new Binding("Tag", this.Group, "Id"));
@@ -50,10 +57,10 @@ namespace OnceRunApp.Controls
                 item.Action = SetNextItemAction(group.AppItems.Count);
                 AppControl control = NewAppControl(item, this.AppIndex);
                 this.AppControls.Add(control);
-                this.Panel.Controls.Add(control, 0, this.AppIndex);
+                this.TableLayout.Controls.Add(control, 0, this.AppIndex);
                 this.AppIndex = SetNextAppIndex();
             }
-            this.Controls.Add(this.Panel);
+            this.Controls.Add(this.TableLayout);
             this.ResumeLayout(true);
         }
 
@@ -104,8 +111,8 @@ namespace OnceRunApp.Controls
             AppControl control = NewAppControl(e.Item, this.AppIndex);
 
             this.AppControls.Add(control);
-            this.Panel.Controls.Add(control, 0, this.AppIndex);
-            this.Panel.ResumeLayout(true);
+            this.TableLayout.Controls.Add(control, 0, this.AppIndex);
+            this.TableLayout.ResumeLayout(true);
         }
 
         private void Control_OnAppItemChanged(object sender, AppItemChangedEventArgs e)
@@ -136,7 +143,7 @@ namespace OnceRunApp.Controls
 
             if (this.AppControls.Remove(control))
             {
-                this.Panel.Controls.Remove(control);
+                this.TableLayout.Controls.Remove(control);
                 if (AppService.ExistsAppItem(control.Item))
                 {
                     AppService.RemoveAppItem(control.Item);
@@ -153,14 +160,14 @@ namespace OnceRunApp.Controls
             
             foreach (AppControl control in this.AppControls)
             {
-                this.Panel.SetColumn(control, 0);
-                this.Panel.SetRow(control, this.AppIndex);
+                this.TableLayout.SetColumn(control, 0);
+                this.TableLayout.SetRow(control, this.AppIndex);
                 control.Index = this.AppIndex;
                 control.Item.Action = SetNextItemAction(this.AppControls.Count);
                 this.AppIndex = SetNextAppIndex();
             }
 
-            this.Panel.ResumeLayout(true);
+            this.TableLayout.ResumeLayout(true);
         }
 
         private int AppControlComparison(AppControl source, AppControl target)
@@ -178,6 +185,18 @@ namespace OnceRunApp.Controls
         }
         
         #endregion
+
+        private void InitializeContainers()
+        {
+            this.TableLayout = new TableLayoutPanel()
+            {
+                RowCount = GlobalVars.MaxAppCountInGroup,
+                ColumnCount = 1,
+                Dock = DockStyle.Fill
+            };
+            this.TableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            this.Controls.Add(this.TableLayout);
+        }
 
     }
 }

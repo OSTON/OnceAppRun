@@ -5,7 +5,7 @@ using System.Text;
 
 using System.Windows.Forms;
 
-namespace OnceRunApp.UIHelpers
+namespace OnceRunApp.Base
 {
     public class UiMessager
     {

@@ -57,7 +57,6 @@
             this.btnChooseExe.TabIndex = 1;
             this.btnChooseExe.Text = "Browse...";
             this.btnChooseExe.UseVisualStyleBackColor = true;
-            this.btnChooseExe.Click += new System.EventHandler(this.BtnChooseExe_Click);
             // 
             // btnAdd
             // 
@@ -70,7 +69,6 @@
             this.btnAdd.TabIndex = 2;
             this.btnAdd.Text = "+";
             this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             // 
             // pnlOperation
             // 
@@ -97,7 +95,6 @@
             this.btnRemove.TabIndex = 3;
             this.btnRemove.Text = "-";
             this.btnRemove.UseVisualStyleBackColor = true;
-            this.btnRemove.Click += new System.EventHandler(this.BtnRemove_Click);
             // 
             // txtName
             // 
