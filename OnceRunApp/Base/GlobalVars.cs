@@ -47,7 +47,7 @@ namespace OnceRunApp.Base
             }
         }
 
-        public static int MaxAppCountInGroup
+        public static int AppControlCountOnPage
         {
             get
             {
@@ -57,7 +57,7 @@ namespace OnceRunApp.Base
             }
         }
 
-        public static int MaxGroupCountOnPage
+        public static int GroupTabCountOnControl
         {
             get
             {

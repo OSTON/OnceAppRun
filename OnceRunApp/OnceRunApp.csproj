@@ -98,8 +98,11 @@
       <DependentUpon>GroupForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Handlers\AboutMeHandler.cs" />
+    <Compile Include="Handlers\AppAddedHandler.cs" />
+    <Compile Include="Handlers\AppChangedHandler.cs" />
     <Compile Include="Handlers\AppChoosedHandler.cs" />
     <Compile Include="Handlers\AppControlLoadHandler.cs" />
+    <Compile Include="Handlers\AppRemovedHandler.cs" />
     <Compile Include="Handlers\GroupAddedHandler.cs" />
     <Compile Include="Handlers\GroupTabLoadHandler.cs" />
     <Compile Include="Handlers\MenuActionHandler.cs" />
