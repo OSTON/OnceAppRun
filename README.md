@@ -1,4 +1,4 @@
 OnceAppRun
 ==========
 
-a tool to allow run on more application at once time.
+a tool to allow run one more application at once time.
