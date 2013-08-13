@@ -40,7 +40,11 @@ namespace OnceRunApp.Controls
 
         private void InitializeHandlers()
         {
-             HandlerHub.Invoke(new GroupTabLoadHandler(this));          
+            this.HandleCreated += (object sender, EventArgs e) =>
+            {
+                HandlerHub.Invoke(new GroupTabLoadHandler(this));   
+            };
+                    
         }
 
         private void InitializeContainers()

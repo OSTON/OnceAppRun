@@ -20,7 +20,7 @@ namespace OnceRunApp
 
         private void BindApplicationInfo()
         {
-            this.lblApplication.Text = string.Format("{0} V{1}",this.AssemblyProduct,this.AssemblyVersion);
+            this.lblApplication.Text = string.Format("{0} v{1}",this.AssemblyProduct,this.AssemblyVersion);
             this.lblDescription.Text = this.AssemblyDescription;
             this.lblCopyRight.Text = this.AssemblyCopyright;
         }

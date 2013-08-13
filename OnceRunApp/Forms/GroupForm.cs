@@ -63,7 +63,7 @@ namespace OnceRunApp
                 HandlerHub.Invoke(new GroupFormLoadHandler(this));
             };
 
-            //Add Group
+            //Add or Update Group
             this.btnOK.Click += (object sender, EventArgs e) =>
             {
                 HandlerHub.Invoke(new GroupAddedHandler(this));

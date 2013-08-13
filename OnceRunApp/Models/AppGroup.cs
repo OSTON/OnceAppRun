@@ -51,7 +51,7 @@ namespace OnceRunApp.Models
         {
             if (string.IsNullOrEmpty(this.name))
             {
-                throw new MyAlertException("App group name is empty!");
+                throw new MyAlertException("Group name is empty!");
             }
 
             return base.Validate();

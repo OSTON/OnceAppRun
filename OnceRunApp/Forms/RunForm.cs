@@ -34,7 +34,8 @@ namespace OnceRunApp
         }
 
         /// <summary>
-        /// Register form and control's related event handlers,the event logic is to be contained in handlers. 
+        /// Register form and control's related event handlers,
+        /// the event logic is to be contained in handlers. 
         /// </summary>
         private void InitializeHandlers()
         {

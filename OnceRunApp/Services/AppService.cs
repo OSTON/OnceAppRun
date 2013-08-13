@@ -111,7 +111,7 @@ namespace OnceRunApp.Services
             if (xGroup != null)
             {
                 xGroup.SetAttributeValue("Name", group.Name);
-                xGroup.SetAttributeValue("Description", group.Description);
+                xGroup.SetAttributeValue("Description", group.Description); 
                 data.SavaAsSource();
             }
         }

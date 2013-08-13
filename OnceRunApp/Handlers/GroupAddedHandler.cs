@@ -24,7 +24,7 @@ namespace OnceRunApp.Handlers
             {
                 if (this.Form.Group.Validate())
                 {
-                    this.Form.DialogResult = DialogResult.OK;
+                    this.Form.DialogResult = DialogResult.OK; 
                 }
             }));
         }

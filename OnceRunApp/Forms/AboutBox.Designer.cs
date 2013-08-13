@@ -27,6 +27,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutBox));
             this.pbLogo = new System.Windows.Forms.PictureBox();
             this.lblApplication = new System.Windows.Forms.Label();
             this.lblDescription = new System.Windows.Forms.Label();
@@ -143,11 +144,12 @@
             this.Controls.Add(this.lblDescription);
             this.Controls.Add(this.lblApplication);
             this.Controls.Add(this.pbLogo);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AboutBox";
             this.Padding = new System.Windows.Forms.Padding(9, 8, 9, 8);
-            this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "About OnceRunApp";

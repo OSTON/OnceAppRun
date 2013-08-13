@@ -39,7 +39,8 @@ namespace OnceRunApp.Handlers
 
                 AppService.OnAppRunError += (AppItemEventArgs e) =>
                 {
-                    UiMessager.ShowError(string.Format("App - {0} is run error,{1}!", e.Item.Name, e.Error.Message));
+                    MyLogger.Instance.Error("{0}{1}{2}", e.Error.Message, Environment.NewLine, e.Error.ToString());
+                    UIMessager.ShowError(string.Format("{0} is running error:{1}", e.Item.Name, e.Error.Message));
                 };
             }));
         }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 using OnceRunApp.Base;
 using OnceRunApp.Models;
@@ -44,7 +45,7 @@ namespace OnceRunApp.Handlers
                         if (this.Form.CurrentPage != null)
                         {
                             form.Group = this.Form.CurrentPage.Group;
-                            if (form.ShowDialog(this.Form) == System.Windows.Forms.DialogResult.OK)
+                            if (form.ShowDialog(this.Form) == DialogResult.OK)
                             {
                                 AppService.UpdateAppGroup(form.Group);
                                 this.Form.CurrentPage.Group = form.Group;
@@ -55,7 +56,7 @@ namespace OnceRunApp.Handlers
 
                         if (this.Form.CurrentPage != null)
                         {
-                            if (UiMessager.ShowConfirm("Are you sure to remove current group?") == System.Windows.Forms.DialogResult.Yes)
+                            if (UIMessager.ShowConfirm("Are you sure to remove current group?") == DialogResult.Yes)
                             {
                                 AppService.RemoveAppGroup(this.Form.CurrentPage.Group);
                                 this.Form.AppGroupTab.Controls.Remove(this.Form.CurrentPage);
@@ -68,7 +69,7 @@ namespace OnceRunApp.Handlers
                         if (this.Form.CurrentPage != null)
                         {
                             AppService.CreateShortcut(this.Form.CurrentPage.Group);
-                            UiMessager.ShowInfo("Group shortcut is created sucessfully!");
+                            UIMessager.ShowInfo(string.Format("{0} shortcut is created sucessfully!",this.Form.CurrentPage.Group.Name));
                         }
                         break;
 

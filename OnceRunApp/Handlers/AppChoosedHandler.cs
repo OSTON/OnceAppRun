@@ -22,7 +22,7 @@ namespace OnceRunApp.Handlers
         public void Execute()
         {
             OpenFileDialog fileDialog = new OpenFileDialog();
-            fileDialog.Filter = "EXE Files(*.exe)|*.exe|All Files|*.*";
+            fileDialog.Filter = "Exe Files(*.exe)|*.exe|All Files|*.*";
             if (fileDialog.ShowDialog() == DialogResult.OK)
             {
                 this.Control.Item.ExePath = fileDialog.FileName;

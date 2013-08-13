@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace OnceRunApp.Base
 {
-    public class UiMessager
+    public class UIMessager
     {
         public static void ShowInfo(string message)
         {

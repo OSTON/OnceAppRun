@@ -124,9 +124,6 @@
   <data name="about" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\about.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="word_photo_bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\word_photo_bg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="App" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\App.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -135,9 +132,6 @@
   </data>
   <data name="shortcut" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\shortcut.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="v5_edit_mode_bottom_bar_list_item_bg_pressed_light.9" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\v5_edit_mode_bottom_bar_list_item_bg_pressed_light.9.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="run" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\run.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -156,8 +150,5 @@
   </data>
   <data name="item_add" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\item_add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="account_unlock_screen_bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\account_unlock_screen_bg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

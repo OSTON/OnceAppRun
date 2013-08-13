@@ -28,7 +28,7 @@ namespace OnceRunApp.Handlers
             {
                 if (this.TabPage.AppControls.Count == 1)
                 {
-                    throw new MyAlertException("There must be have more than 1 item!");
+                    throw new MyAlertException("There must be more than one item!");
                 }
 
                 if (this.TabPage.AppControls.Remove(this.Control))

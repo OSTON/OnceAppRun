@@ -29,20 +29,20 @@ namespace OnceRunApp
                 {
                     MyAlertException alert = (MyAlertException)e.Exception;
                     MyLogger.Instance.Warn("{0}{1}{2}", alert.Message, Environment.NewLine, alert.ToString());
-                    UiMessager.ShowWarning(alert.Message);
+                    UIMessager.ShowWarning(alert.Message);
                 }
                 else
                 {
-                    MyLogger.Instance.Error("Thread Exception", e.Exception);
-                    UiMessager.ShowError("Thread Exception-" + e.Exception.Message);
+                    MyLogger.Instance.Error("{0}{1}{2}",e.Exception.Message,Environment.NewLine,e.Exception.ToString());
+                    UIMessager.ShowError(e.Exception.Message);
                 }
 
             };
             AppDomain.CurrentDomain.UnhandledException += (object sender, UnhandledExceptionEventArgs e) =>
             {
                 Exception ex = e.ExceptionObject as Exception;
-                MyLogger.Instance.Error("Unhandled Exception", ex);
-                UiMessager.ShowError("Unhandled Exception-" + ex.Message);
+                MyLogger.Instance.Error("{0}{1}{2}",ex.Message,Environment.NewLine,ex.ToString());
+                UIMessager.ShowError(ex.Message);
             };
 
             //By default,
@@ -59,8 +59,8 @@ namespace OnceRunApp
                 string executeGroupId = args[0];
                 AppService.OnAppRunError += (AppItemEventArgs e) =>
                 {
-                    MyLogger.Instance.Error("App Running Error", e.Error);
-                    UiMessager.ShowError(string.Format("App - {0} is running error,{1}", e.Item.Name, e.Error.Message));
+                    MyLogger.Instance.Error("{0}{1}{2}",e.Error.Message,Environment.NewLine,e.Error.ToString());
+                    UIMessager.ShowError(string.Format("{0} is running error:{1}", e.Item.Name, e.Error.Message));
                 };
                 AppService.RunApps(executeGroupId);
             }
